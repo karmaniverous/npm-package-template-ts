@@ -42,7 +42,7 @@
       "after:release": [
         "git switch -c release/${version}",
         "git push -u origin release/${version}",
-        "git switch dev"
+        "git switch main"
       ]
     },
     "npm": {
@@ -50,8 +50,9 @@
     }
   },
   "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "lint": "eslint src/**",
-    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json"
+    "release": "release-it"
   },
   "type": "module",
   "version": "1.0.0"
