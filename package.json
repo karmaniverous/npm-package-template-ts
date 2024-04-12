@@ -6,11 +6,19 @@
   "description": "A feature-rich npm package template for TypeScript projects.",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
     "auto-changelog": "^2.4.0",
+    "chai": "^5.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
+    "jsdom-global": "^3.0.2",
     "lefthook": "^1.6.10",
+    "mocha": "^10.4.0",
+    "nyc": "^15.1.0",
     "release-it": "^17.2.0",
     "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.6.0"
   },
@@ -66,9 +74,10 @@
     "url": "https://github.com/karmaniverous/npm-package-template-ts"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
     "lint": "eslint src/**",
-    "release": "release-it"
+    "release": "release-it",
+    "test": "cross-env TS_NODE_PROJECT='./tsconfig.test.json' nyc mocha"
   },
   "type": "module",
   "version": "0.0.1"

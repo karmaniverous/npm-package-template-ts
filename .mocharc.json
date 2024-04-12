@@ -1,0 +1,11 @@
+{
+  "exclude": ["./dist/**", "./node_modules/**", "./**/*.json"],
+  "extension": ["ts"],
+  "recursive": true,
+  "require": [
+    "jsdom-global/register",
+    "ts-node/register",
+    "source-map-support/register"
+  ],
+  "spec": "./**/*.test.!(*.*)"
+}
