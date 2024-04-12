@@ -1,0 +1,32 @@
+{
+  "author": "",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^8.57.0",
+    "lefthook": "^1.6.10",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.6.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "license": "ISC",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "name": "@karmaniverous/npm-package-template-ts",
+  "scripts": {
+    "lint": "eslint src/**",
+    "tsc": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}
