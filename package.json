@@ -7,14 +7,21 @@
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@types/chai": "^4.3.14",
+    "@types/eslint__js": "^8.42.3",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint-plugin-mocha": "^10.4.0",
     "@types/mocha": "^10.0.6",
     "auto-changelog": "^2.4.0",
     "chai": "^5.1.0",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-mocha": "^10.4.2",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
     "jsdom-global": "^3.0.2",
     "lefthook": "^1.6.10",
     "mocha": "^10.4.0",
     "nyc": "^15.1.0",
+    "prettier": "^3.2.5",
     "release-it": "^17.2.0",
     "rimraf": "^5.0.5",
     "source-map-support": "^0.5.21",
@@ -74,8 +81,9 @@
     "url": "https://github.com/karmaniverous/npm-package-template-ts"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
-    "lint": "eslint src/**",
+    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
+    "lint": "eslint src/** && prettier -c src",
+    "lint:fix": "eslint --fix src/** && prettier --write src",
     "release": "release-it",
     "test": "nyc mocha"
   },

@@ -2,11 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "./dist/cjs/types",
+    "declarationDir": "./dist/esm/types",
     "declarationMap": true,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "outDir": "./dist/cjs"
+    "outDir": "./dist/esm"
   },
   "include": ["src/**/*"]
 }
