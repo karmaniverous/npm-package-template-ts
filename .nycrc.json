@@ -1,0 +1,8 @@
+{
+  "all": true,
+  "include": ["src/**/*"],
+  "report-dir": "coverage",
+  "reporter": ["html", "lcov", "text", "text-summary"],
+  "skip-empty": true,
+  "skip-full": true
+}
