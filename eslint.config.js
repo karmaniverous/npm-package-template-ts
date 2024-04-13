@@ -5,7 +5,8 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
 
   {
     languageOptions: {
@@ -13,9 +14,6 @@ export default tseslint.config(
         project: true,
         tsconfigRootDir: import.meta.dirname,
       },
-    },
-    rules: {
-      'sort-imports': 'error',
     },
   }
 );

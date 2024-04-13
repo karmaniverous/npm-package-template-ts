@@ -25,8 +25,8 @@
     // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
 
     /* Modules */
-    "module": "ES2020" /* Specify what module code is generated. */,
-    "moduleResolution": "Node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "module": "ESNext" /* Specify what module code is generated. */,
+    "moduleResolution": "Bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
     // "allowArbitraryExtensions": true,                 /* Enable importing files with any extension, provided a declaration file is present. */
     // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
@@ -107,5 +107,5 @@
     // "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
 
-  "include": ["./src"]
+  "include": ["src/**/*"]
 }
