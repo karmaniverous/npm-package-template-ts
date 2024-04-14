@@ -64,6 +64,7 @@
     "hooks": {
       "after:init": [
         "npm run lint",
+        "npm run test",
         "npm run build"
       ],
       "after:release": [
@@ -87,6 +88,5 @@
     "release": "release-it",
     "test": "nyc mocha"
   },
-  "type": "module",
-  "version": "0.0.1"
+  "type": "module"
 }
