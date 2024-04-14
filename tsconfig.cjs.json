@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./dist/cjs/types",
@@ -8,5 +7,7 @@
     "moduleResolution": "Node",
     "outDir": "./dist/cjs"
   },
+  "exclude": ["src/**/*.test.*"],
+  "extends": "./tsconfig.json",
   "include": ["src/**/*"]
 }
