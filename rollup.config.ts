@@ -77,7 +77,7 @@ const config: RollupOptions[] = [
       },
       {
         extend: true,
-        file: `${outputPath}.d.cjs`,
+        file: `${outputPath}.d.cts`,
         format: 'cjs',
       },
     ],
