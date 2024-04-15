@@ -93,7 +93,7 @@
   },
   "type": "module",
   "types": "dist/index.d.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.12.7",
