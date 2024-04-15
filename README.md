@@ -112,3 +112,8 @@ To activate this functionality, be sure to run `npx lefthook install` after clon
 
 - CLI support with [`commander`](https://www.npmjs.com/package/commander)
 - DotEnv support with [`get-dotenv`](https://www.npmjs.com/package/@karmaniverous/get-dotenv)
+
+---
+
+See more great templates and other tools on
+[my GitHub Profile](https://github.com/karmaniverous)!
