@@ -25,7 +25,7 @@ Also, type `@recommended` into the VSCode Extensions sidebar and install the rec
 
 ## Code Authoring
 
-You want to write straight TS code without having to jump through weird hoops like adding a `.js` extension to your TS imports. (Click here to dive into that hole. 🙄)
+You want to write straight TS code without having to jump through weird hoops like adding a `.js` extension to your TS imports. ([Click here](https://stackoverflow.com/questions/75807785/why-do-i-need-to-include-js-extension-in-typescript-import-for-custom-module) to dive into that hole. 🙄)
 
 Long story short: you can. Just write your code in the `src` directory and import it as you would any other module. The [bundling process](#bundling) will take care of the rest.
 

@@ -3,7 +3,7 @@
   "bugs": {
     "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
   },
-  "description": "A feature-rich npm package template for TypeScript projects.",
+  "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@rollup/plugin-typescript": "^11.1.6",
