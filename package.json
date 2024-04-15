@@ -34,8 +34,14 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.esm.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs.js"
+      }
     }
   },
   "files": [
@@ -93,7 +99,7 @@
   },
   "type": "module",
   "types": "dist/index.d.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.12.7",
