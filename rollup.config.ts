@@ -23,7 +23,7 @@ const config: RollupOptions[] = [
   // ESM output.
   {
     ...commonInputOptions,
-    output: [{ extend: true, file: `${outputPath}.esm.js`, format: 'esm' }],
+    output: [{ extend: true, file: `${outputPath}.mjs`, format: 'esm' }],
   },
 
   // IIFE output.
@@ -54,7 +54,7 @@ const config: RollupOptions[] = [
     output: [
       {
         extend: true,
-        file: `${outputPath}.cjs.js`,
+        file: `${outputPath}.cjs`,
         format: 'cjs',
       },
     ],
@@ -69,6 +69,16 @@ const config: RollupOptions[] = [
         extend: true,
         file: `${outputPath}.d.ts`,
         format: 'esm',
+      },
+      {
+        extend: true,
+        file: `${outputPath}.d.mts`,
+        format: 'esm',
+      },
+      {
+        extend: true,
+        file: `${outputPath}.d.cjs`,
+        format: 'cjs',
       },
     ],
   },
