@@ -6,6 +6,7 @@
   "description": "A feature-rich npm package template for TypeScript projects.",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/chai": "^4.3.14",
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -24,15 +25,17 @@
     "prettier": "^3.2.5",
     "release-it": "^17.2.0",
     "rimraf": "^5.0.5",
+    "rollup": "^4.14.2",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.6.0"
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
     }
   },
   "files": [
@@ -46,8 +49,8 @@
     "typescript"
   ],
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "name": "@karmaniverous/npm-package-template-ts",
   "publishConfig": {
     "access": "public"
@@ -82,12 +85,19 @@
     "url": "https://github.com/karmaniverous/npm-package-template-ts"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
+    "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
     "release": "release-it",
     "test": "nyc mocha"
   },
   "type": "module",
-  "version": "0.0.4"
+  "types": "dist/index.d.ts",
+  "version": "0.0.4",
+  "dependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^20.12.7",
+    "rollup-plugin-dts": "^6.1.0",
+    "save-dev": "^0.0.1-security"
+  }
 }
