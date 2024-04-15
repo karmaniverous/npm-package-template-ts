@@ -13,6 +13,7 @@ export default tseslint.config(
   mochaPlugin.configs.flat.recommended,
   {
     extends: [prettierPlugin],
+    ignores: ['coverage/**/*', 'dist/**/*'],
 
     languageOptions: {
       parserOptions: {
