@@ -6,13 +6,13 @@ Getting all of these pieces to work gracefully together is not trivial, expecial
 
 This template is designed to help you get all of these pieces working together in harmony, right out of the box, so you can focus on your code. It includes fully-configured support for:
 
-✅ Unit testing with Mocha & Chai.
-✅ Code formatting with Prettier.
-✅ Linting with ESLint.
-✅ Bundling with Rollup.
-✅ Publishing with ReleaseIt.
-✅ Git hooks with Lefthook.
-✅ Recommended extensions & settings wherever appropriate.
+✅ Unit testing with Mocha & Chai.<br>
+✅ Code formatting with Prettier.<br>
+✅ Linting with ESLint.<br>
+✅ Bundling with Rollup.<br>
+✅ Publishing with ReleaseIt.<br>
+✅ Git hooks with Lefthook.<br>
+✅ Recommended extensions & settings wherever appropriate.<br>
 
 After cloning a repository that uses this template, be sure to run:
 
@@ -107,3 +107,8 @@ To activate this functionality, be sure to run `npx lefthook install` after clon
 - [TypeScript and NPM package.json exports the 2024 way](https://www.kravchyk.com/typescript-npm-package-json-exports/). Note that [this snippet](https://www.kravchyk.com/typescript-npm-package-json-exports/#:~:text=the%20types%20may%20need%20to%20be%20.d.cjs) is wrong; it should read _the types may need to be `.d.cts`_. That's how this template is implemented. Also note that we're just using a second (and third) `rollup` type declarations target instead of employing [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy) as suggested in the article.
 
 - [Naming conventions for Git Branches — a Cheatsheet](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)
+
+## Coming Soon
+
+- CLI support with [`commander`](https://www.npmjs.com/package/commander)
+- DotEnv support with [`get-dotenv`](https://www.npmjs.com/package/@karmaniverous/get-dotenv)
