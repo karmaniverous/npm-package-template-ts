@@ -1,1 +1,7 @@
-export const foo = (target: string) => `foo ${target}`;
+import { logger } from './util/logger';
+
+export const foo = (target: string) => {
+  logger.debug(`fooing '${target}'!`);
+
+  return `foo ${target}`;
+};

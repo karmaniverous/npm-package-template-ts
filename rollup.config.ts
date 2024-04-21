@@ -3,11 +3,8 @@ import typescriptPlugin from '@rollup/plugin-typescript';
 import type { InputOptions, OutputOptions, RollupOptions } from 'rollup';
 import dtsPlugin from 'rollup-plugin-dts';
 
-// Derive outputPath from package name.
-const npmPackageRegex =
-  /^(?:(?<scope>@[a-z0-9-~][a-z0-9-._~]*)\/)?(?<name>[a-z0-9-~][a-z0-9-._~]*)$/;
-const packageName =
-  process.env.npm_package_name?.match(npmPackageRegex)?.groups?.name ?? 'index';
+import { packageName } from './src/util/packageName';
+
 const outputPath = `dist/index`;
 
 const commonInputOptions: InputOptions = {
@@ -16,7 +13,7 @@ const commonInputOptions: InputOptions = {
 };
 
 const iifeCommonOutputOptions: OutputOptions = {
-  name: packageName,
+  name: packageName ?? 'index',
 };
 
 const config: RollupOptions[] = [
