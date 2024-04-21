@@ -4,26 +4,26 @@
     "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
   },
   "dependencies": {
-    "@rollup/plugin-terser": "^0.4.4",
-    "@types/node": "^20.12.7",
-    "rollup-plugin-dts": "^6.1.0",
-    "save-dev": "^0.0.1-security"
+    "tslog": "^4.9.2"
   },
   "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
+    "@eslint/js": "^9.1.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/chai": "^4.3.14",
+    "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint-plugin-mocha": "^10.4.0",
-    "@types/eslint__js": "^8.42.3",
     "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.7",
     "auto-changelog": "^2.4.0",
     "chai": "^5.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-mocha": "^10.4.2",
-    "eslint-plugin-simple-import-sort": "^12.0.0",
+    "eslint-plugin-mocha": "^10.4.3",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
     "jsdom-global": "^3.0.2",
     "lefthook": "^1.6.10",
     "mocha": "^10.4.0",
@@ -31,12 +31,13 @@
     "prettier": "^3.2.5",
     "release-it": "^17.2.0",
     "rimraf": "^5.0.5",
-    "rollup": "^4.14.2",
+    "rollup": "^4.16.0",
+    "rollup-plugin-dts": "^6.1.0",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.6.0"
+    "typescript-eslint": "^7.7.0"
   },
   "exports": {
     ".": {
@@ -101,7 +102,7 @@
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
     "release": "release-it",
-    "test": "nyc mocha"
+    "test": "cross-env LOG_LEVEL=debug nyc mocha"
   },
   "type": "module",
   "types": "dist/index.d.ts",
