@@ -1,17 +1,18 @@
 # TypeScript NPM Package Template
 
-**Writing great TypeScript is only half the battle.** You also need to test it, lint it, format it, bundle it, and publish it!
+<span style="color: darkBlue;">**Writing great TypeScript is only half the battle!**</span> You also need to instrument it, format it, lint it, test it, bundle it, and publish it!
 
-Getting all of these pieces to work gracefully together is not trivial, expecially given that a bunch of popular tools have recently released major versions that don't always play well together.
+Getting all of these pieces to work gracefully together is not trivial, especially given that a bunch of popular tools have recently released major versions that don't always play well together.
 
 This template is designed to help you get all of these pieces working together in harmony, right out of the box, so you can focus on your code. It includes fully-configured support for:
 
-✅ Unit testing with Mocha & Chai.<br>
-✅ Code formatting with Prettier.<br>
-✅ Linting with ESLint.<br>
-✅ Bundling with Rollup.<br>
-✅ Publishing with ReleaseIt.<br>
-✅ Git hooks with Lefthook.<br>
+✅ Logging with [tslog](https://tslog.js.org/).<br>
+✅ Code formatting with [Prettier](https://prettier.io/).<br>
+✅ Linting with [ESLint](https://eslint.org/).<br>
+✅ Unit testing with [Mocha](https://mochajs.org/) & [Chai](https://www.chaijs.com/).<br>
+✅ Bundling with [Rollup](https://rollupjs.org/).<br>
+✅ Publishing with [ReleaseIt](https://github.com/release-it/release-it).<br>
+✅ Git hooks with [Lefthook](https://github.com/evilmartians/lefthook).<br>
 ✅ Recommended extensions & settings wherever appropriate.<br>
 
 After cloning a repository that uses this template, be sure to run:
@@ -29,17 +30,23 @@ You want to write straight TS code without having to jump through weird hoops li
 
 Long story short: you can. Just write your code in the `src` directory and import it as you would any other module. The [bundling process](#bundling) will take care of the rest.
 
-## Unit Testing
+## Logging
 
-Unit test support is provided by [Mocha](https://mochajs.org), using the [Chai](https://www.chaijs.com) assertion library.
+Logging is provided by [tslog](https://tslog.js.org). Just import & use the pre-configured logger, like this:
 
-Any file containing `.test.` in its name (e.g. [`foo.test.ts`](./src/foo.test.ts)) will be treated as a test file and executed by Mocha. See [`.mocharc.json`](./.mocharc.json) for configuration details.
+```typescript
+import { logger } from './util/logger';
 
-Just run `npm test` to execute your tests.
+logger.debug('This is a debug message!');
+```
 
-Test coverage reporting is provided by [`nyc`](https://www.npmjs.com/package/nyc) and runs every time you execute your tests. If you execute your tests from the command line, you will see a coverage report at the bottom of the run. You can also see a prettier version of this report by opening `coverage/index.html` in your browser.
+By default, logs are suppressed when `LOG_LEVEL` is either invalid or undefined. For example, the test script uses `cross-env` to enable debug logging during unit testing like this:
 
-The [Mocha Test Explorer Extension](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter) is a great way to execute & debug your Mocha tests! It's included in the template's VSCode [workspace recommendations](./.vscode/extensions.json), and the template contains related [workspace settings](./.vscode/settings.json), so be sure to install recommended extensions when prompted!
+```typescript
+cross-env LOG_LEVEL=debug nyc mocha
+```
+
+See the [`logger` module](./src/util/logger.ts) for more details of this implementation, and the [tslog documentation](https://tslog.js.org) for tons of configuration options.
 
 ## Formatting
 
@@ -56,6 +63,18 @@ Linting services are provided by [ESLint](https://eslint.org).
 Just run `npm run lint` to lint your code, or `npm run lint:fix` to resolve any issues automatically if possible. These commands also run Prettier to identify & fix formatting issues.
 
 The [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) is included in the template's VSCode [workspace recommendations](./.vscode/extensions.json), and the template contains related [workspace settings](./.vscode/settings.json), so be sure to install recommended extensions when prompted!
+
+## Unit Testing
+
+Unit test support is provided by [Mocha](https://mochajs.org), using the [Chai](https://www.chaijs.com) assertion library.
+
+Any file containing `.test.` in its name (e.g. [`foo.test.ts`](./src/foo.test.ts)) will be treated as a test file and executed by Mocha. See [`.mocharc.json`](./.mocharc.json) for configuration details.
+
+Just run `npm test` to execute your tests.
+
+Test coverage reporting is provided by [`nyc`](https://www.npmjs.com/package/nyc) and runs every time you execute your tests. If you execute your tests from the command line, you will see a coverage report at the bottom of the run. You can also see a prettier version of this report by opening `coverage/index.html` in your browser.
+
+The [Mocha Test Explorer Extension](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter) is a great way to execute & debug your Mocha tests! It's included in the template's VSCode [workspace recommendations](./.vscode/extensions.json), and the template contains related [workspace settings](./.vscode/settings.json), so be sure to install recommended extensions when prompted!
 
 ## Bundling
 
