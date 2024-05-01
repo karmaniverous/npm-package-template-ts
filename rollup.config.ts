@@ -86,6 +86,19 @@ const config: RollupOptions[] = [
       },
     ],
   },
+
+  // CLI output.
+  {
+    ...commonInputOptions,
+    input: 'src/cli/index.ts',
+    output: [
+      {
+        extend: true,
+        file: `${outputPath}.cli.mjs`,
+        format: 'esm',
+      },
+    ],
+  },
 ];
 
 export default config;
