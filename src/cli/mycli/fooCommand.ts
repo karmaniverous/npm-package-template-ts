@@ -1,7 +1,6 @@
 import { Command } from '@commander-js/extra-typings';
 
-import { foo } from '../foo';
-import { logger } from '../util/logger';
+import { foo } from '../../foo';
 
 export const fooCommand = new Command()
   .name('foo')
@@ -10,5 +9,5 @@ export const fooCommand = new Command()
   .passThroughOptions()
   .option('-b, --bar <string>', 'Foo what?')
   .action(({ bar }) => {
-    logger.info(foo(bar));
+    console.log(foo(bar));
   });
