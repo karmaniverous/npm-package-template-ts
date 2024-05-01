@@ -9,6 +9,7 @@
   "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
     "@eslint/js": "^9.1.1",
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
