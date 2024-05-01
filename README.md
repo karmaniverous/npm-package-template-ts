@@ -45,11 +45,11 @@ Given that your underlying library is solid, wrapping it into a CLI is fairly st
 1. The `bin` field in [`package.json`](./package.json) must specifically reference each of these compiled CLI commands. On installation, you can then execute your CLI command like this:
 
 ```bash
-npx mycli      # if installed localy
+> npx mycli      # if installed localy
 
-mycli          # if installed globally
+> mycli          # if installed globally
 
----
+# this is what you get...
 
 Usage: mycli [options] [command]
 
@@ -61,7 +61,6 @@ Options:
 Commands:
   foo [options]   Foos your bar.
   help [command]  display help for command
-
 ```
 
 Providing a detailed tutorial on Commander is really out of scope for this README, but this repo demonstrates a simple example with a single subcommand abstracted into a separate dependency.
