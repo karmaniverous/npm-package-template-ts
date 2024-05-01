@@ -48,6 +48,14 @@ cross-env LOG_LEVEL=debug nyc mocha
 
 See the [`logger` module](./src/util/logger.ts) for more details of this implementation, and the [tslog documentation](https://tslog.js.org) for tons of configuration options.
 
+### IIFE Logging
+
+[tslog](https://tslog.js.org) appears not to play nicely with IIFE modules, so I've added a [`rollup.config.ts` replacement rule](./rollup.config.ts#L21-L24) that replaces the `tslog` logger with `console` for all IIFE builds.
+
+**If you plan to build IIFE modules, you should avoid the `silly` and `fatal` log levels, as these do not exist on `console`!**
+
+This is a bit of a hack, but it works. If you have a better solution, please submit a PR!
+
 ## Formatting
 
 Code formatting is provided by [Prettier](https://prettier.io).
@@ -89,6 +97,16 @@ Type declarations are properly bundled and should be available no matter how you
 Just run `npm run build` to bundle your code. The output will be in the `dist` directory.
 
 See [`rollup.config.ts`](./rollup.config.ts) for details.
+
+### Incremental Build Warning
+
+Incremental builds are turned on in this template. This will save you some build time, but [`@rollup/plugin-typescript`](https://www.npmjs.com/package/@rollup/plugin-typescript) will emit the following warning at build time:
+
+```bash
+(!) [plugin typescript] @rollup/plugin-typescript: outputToFilesystem option is defaulting to true.
+```
+
+This is a [known issue](https://github.com/rollup/plugins/issues/1227) and should have no negative effect on your build. If you can figure out how to suppress this warning, please submit a PR!
 
 ## Publishing
 
