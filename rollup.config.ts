@@ -1,15 +1,17 @@
 import aliasPlugin, { Alias } from '@rollup/plugin-alias';
+import commonjsPlugin from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terserPlugin from '@rollup/plugin-terser';
 import typescriptPlugin from '@rollup/plugin-typescript';
+import fs from 'fs-extra';
 import type { InputOptions, OutputOptions, RollupOptions } from 'rollup';
 import dtsPlugin from 'rollup-plugin-dts';
 
 import { packageName } from './src/util/packageName';
 
-const outputPath = `dist/index`;
+const outputPath = `dist`;
 
-const commonPlugins = [nodeResolve(), typescriptPlugin()];
+const commonPlugins = [commonjsPlugin(), nodeResolve(), typescriptPlugin()];
 
 const commonAliases: Alias[] = [];
 
@@ -23,8 +25,10 @@ const iifeAliases = [
 ];
 
 const iifeCommonOutputOptions: OutputOptions = {
-  name: packageName ?? 'index',
+  name: packageName ?? 'unknown',
 };
+
+const cliCommands = await fs.readdir('src/cli');
 
 const config: RollupOptions[] = [
   // ESM output.
@@ -33,7 +37,7 @@ const config: RollupOptions[] = [
     output: [
       {
         extend: true,
-        file: `${outputPath}.mjs`,
+        file: `${outputPath}/index.mjs`,
         format: 'esm',
       },
     ],
@@ -52,7 +56,7 @@ const config: RollupOptions[] = [
       {
         ...iifeCommonOutputOptions,
         extend: true,
-        file: `${outputPath}.iife.js`,
+        file: `${outputPath}/index.iife.js`,
         format: 'iife',
       },
 
@@ -60,7 +64,7 @@ const config: RollupOptions[] = [
       {
         ...iifeCommonOutputOptions,
         extend: true,
-        file: `${outputPath}.iife.min.js`,
+        file: `${outputPath}/index.iife.min.js`,
         format: 'iife',
         plugins: [terserPlugin()],
       },
@@ -73,7 +77,7 @@ const config: RollupOptions[] = [
     output: [
       {
         extend: true,
-        file: `${outputPath}.cjs`,
+        file: `${outputPath}/index.cjs`,
         format: 'cjs',
       },
     ],
@@ -86,34 +90,34 @@ const config: RollupOptions[] = [
     output: [
       {
         extend: true,
-        file: `${outputPath}.d.ts`,
+        file: `${outputPath}/index.d.ts`,
         format: 'esm',
       },
       {
         extend: true,
-        file: `${outputPath}.d.mts`,
+        file: `${outputPath}/index.d.mts`,
         format: 'esm',
       },
       {
         extend: true,
-        file: `${outputPath}.d.cts`,
+        file: `${outputPath}/index.d.cts`,
         format: 'cjs',
       },
     ],
   },
 
   // CLI output.
-  {
+  ...cliCommands.map<RollupOptions>((c) => ({
     ...commonInputOptions,
-    input: 'src/cli/index.ts',
+    input: `src/cli/${c}/index.ts`,
     output: [
       {
         extend: true,
-        file: `${outputPath}.cli.mjs`,
+        file: `${outputPath}/${c}.cli.mjs`,
         format: 'esm',
       },
     ],
-  },
+  })),
 ];
 
 export default config;
