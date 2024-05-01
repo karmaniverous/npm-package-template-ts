@@ -121,15 +121,16 @@ To activate this functionality, be sure to run `npx lefthook install` after clon
 
 ## References
 
-- [Bundling TypeScript in different formats with rollup.js](https://datomarjanidze.medium.com/bundling-typescript-in-different-formats-with-rollup-js-3397b3a84e4e)
+- [Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)
 
-- [TypeScript and NPM package.json exports the 2024 way](https://www.kravchyk.com/typescript-npm-package-json-exports/). Note that [this snippet](https://www.kravchyk.com/typescript-npm-package-json-exports/#:~:text=the%20types%20may%20need%20to%20be%20.d.cjs) is wrong; it should read _the types may need to be `.d.cts`_. That's how this template is implemented. Also note that we're just using a second (and third) `rollup` type declarations target instead of employing [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy) as suggested in the article.
+- [Bundling TypeScript in different formats with rollup.js](https://datomarjanidze.medium.com/bundling-typescript-in-different-formats-with-rollup-js-3397b3a84e4e)
 
 - [Naming conventions for Git Branches — a Cheatsheet](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)
 
+- [TypeScript and NPM package.json exports the 2024 way](https://www.kravchyk.com/typescript-npm-package-json-exports/). Note that [this snippet](https://www.kravchyk.com/typescript-npm-package-json-exports/#:~:text=the%20types%20may%20need%20to%20be%20.d.cjs) is wrong; it should read _the types may need to be `.d.cts`_. That's how this template is implemented. Also note that we're just using a second (and third) `rollup` type declarations target instead of employing [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy) as suggested in the article.
+
 ## Coming Soon
 
-- CLI support with [`commander`](https://www.npmjs.com/package/commander)
 - DotEnv support with [`get-dotenv`](https://www.npmjs.com/package/@karmaniverous/get-dotenv)
 
 ---
