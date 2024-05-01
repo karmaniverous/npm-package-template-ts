@@ -1,3 +1,4 @@
+import aliasPlugin, { Alias } from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terserPlugin from '@rollup/plugin-terser';
 import typescriptPlugin from '@rollup/plugin-typescript';
@@ -8,10 +9,18 @@ import { packageName } from './src/util/packageName';
 
 const outputPath = `dist/index`;
 
+const commonPlugins = [nodeResolve(), typescriptPlugin()];
+
+const commonAliases: Alias[] = [];
+
 const commonInputOptions: InputOptions = {
   input: 'src/index.ts',
-  plugins: [nodeResolve(), typescriptPlugin()],
+  plugins: [aliasPlugin({ entries: commonAliases }), commonPlugins],
 };
+
+const iifeAliases = [
+  { find: /^(.*)\/util\/logger$/, replacement: '$1/util/console' },
+];
 
 const iifeCommonOutputOptions: OutputOptions = {
   name: packageName ?? 'index',
@@ -33,6 +42,12 @@ const config: RollupOptions[] = [
   // IIFE output.
   {
     ...commonInputOptions,
+    plugins: [
+      aliasPlugin({
+        entries: [...commonAliases, ...iifeAliases],
+      }),
+      commonPlugins,
+    ],
     output: [
       {
         ...iifeCommonOutputOptions,
