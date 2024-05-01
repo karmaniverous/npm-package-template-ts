@@ -38,7 +38,7 @@ This template uses [Commander](https://www.npmjs.com/package/commander) to gener
 
 Given that your underlying library is solid, wrapping it into a CLI is fairly straightforward. Just follow these steps:
 
-1. All of your CLI-specific code should live in the [src/cli](./src/cli/) directory, but can import code from across your package as required. Each subdirectory here is the root of a CLI command. You can have as many as you want, but this template includes a single example called [`mycli`](./src/cli/mycli/).
+1. All of your CLI-specific code should live in the [`src/cli`](./src/cli/) directory, but can import code from across your package as required. Each subdirectory here is the root of a CLI command. You can have as many as you want, but this template includes a single example called [`mycli`](./src/cli/mycli/).
 
 1. The `index.ts` file in each named CLI subdirectory will be picked up by the [bundler](#bundling) and compiled into a CLI command with the same name as the subdirectory. So `src/cli/mycli/index.ts` will be compiled into `dist/mycli.cli.mjs`.
 
@@ -48,6 +48,20 @@ Given that your underlying library is solid, wrapping it into a CLI is fairly st
 npx mycli      # if installed localy
 
 mycli          # if installed globally
+
+---
+
+Usage: mycli [options] [command]
+
+My CLI tool
+
+Options:
+  -h, --help      display help for command
+
+Commands:
+  foo [options]   Foos your bar.
+  help [command]  display help for command
+
 ```
 
 Providing a detailed tutorial on Commander is really out of scope for this README, but this repo demonstrates a simple example with a single subcommand abstracted into a separate dependency.
