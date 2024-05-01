@@ -1,7 +1,7 @@
 import { logger } from './util/logger';
 
-export const foo = (target: string) => {
-  logger.debug(`fooing '${target}'!`);
+export const foo = (target: string | undefined) => {
+  logger.debug(`fooing '${target ?? 'nothing'}'!`);
 
-  return `foo ${target}`;
+  return `foo ${target ?? 'nothing'}`;
 };

@@ -6,6 +6,8 @@ Getting all of these pieces to work gracefully together is not trivial, especial
 
 This template is designed to help you get all of these pieces working together in harmony, right out of the box, so you can focus on your code. It includes fully-configured support for:
 
+✅ Code authoring with [TypeScript](https://www.typescriptlang.org/).<br>
+✅ CLI generation with [Commander](https://www.npmjs.com/package/commander).<br>
 ✅ Logging with [tslog](https://tslog.js.org/).<br>
 ✅ Code formatting with [Prettier](https://prettier.io/).<br>
 ✅ Linting with [ESLint](https://eslint.org/).<br>
@@ -29,6 +31,41 @@ Also, type `@recommended` into the VSCode Extensions sidebar and install the rec
 You want to write straight TS code without having to jump through weird hoops like adding a `.js` extension to your TS imports. ([Click here](https://stackoverflow.com/questions/75807785/why-do-i-need-to-include-js-extension-in-typescript-import-for-custom-module) to dive into that hole. 🙄)
 
 Long story short: you can. Just write your code in the `src` directory and import it as you would any other module. The [bundling process](#bundling) will take care of the rest.
+
+## CLI Generation
+
+This template uses [Commander](https://www.npmjs.com/package/commander) to generate a CLI for your package.
+
+Given that your underlying library is solid, wrapping it into a CLI is fairly straightforward. Just follow these steps:
+
+1. All of your CLI-specific code should live in the [`src/cli`](./src/cli/) directory, but can import code from across your package as required. Each subdirectory here is the root of a CLI command. You can have as many as you want, but this template includes a single example called [`mycli`](./src/cli/mycli/).
+
+1. The `index.ts` file in each named CLI subdirectory will be picked up by the [bundler](#bundling) and compiled into a CLI command with the same name as the subdirectory. So `src/cli/mycli/index.ts` will be compiled into `dist/mycli.cli.mjs`.
+
+1. The `bin` field in [`package.json`](./package.json) must specifically reference each of these compiled CLI commands. On installation, you can then execute your CLI command like this:
+
+```bash
+> npx mycli      # if installed localy
+
+> mycli          # if installed globally
+
+# this is what you get...
+
+Usage: mycli [options] [command]
+
+My CLI tool
+
+Options:
+  -h, --help      display help for command
+
+Commands:
+  foo [options]   Foos your bar.
+  help [command]  display help for command
+```
+
+Providing a detailed tutorial on Commander is really out of scope for this README, but this repo demonstrates a simple example with a single subcommand abstracted into a separate dependency.
+
+You can build on this example to create a MUCH more complex CLI! See the [Commander documentation](https://www.npmjs.com/package/commander) for more details.
 
 ## Logging
 
@@ -86,17 +123,19 @@ The [Mocha Test Explorer Extension](https://marketplace.visualstudio.com/items?i
 
 ## Bundling
 
-This template uses [Rollup](https://rollupjs.org) to bundle your code. See the [References](#references) section for more detailed notes. It will output three different formats:
+This template uses [Rollup](https://rollupjs.org) to bundle your code. See the [References](#references) section for more detailed notes. It creates several kinds of outputs:
 
 - ESM, for import into most TS/JS code.
 - IIFE ([Immediately Invoked Function Expression](https://medium.com/@rabailzaheer/iife-explained-immediately-invoked-function-expressions-fccd8f53123d)), for direct browser import.
 - CJS, for lulz.
+- Type definition files to support TypeScript imports and power IntelliSense in Javascript.
+- CLI commands for execution from your command line. See the [CLI Generation](#cli-generation) section for details. Don't forget to update the `bin` field in [`package.json`](./package.json)!
 
 Type declarations are properly bundled and should be available no matter how your package is imported.
 
-Just run `npm run build` to bundle your code. The output will be in the `dist` directory.
+Just run `npm run build` to bundle your code, and the output will be in the `dist` directory.
 
-See [`rollup.config.ts`](./rollup.config.ts) for details.
+See [`rollup.config.ts`](./rollup.config.ts) for details. If you don't need all of the output types listed above, it should be fairly straightforward to modify this file to suit your needs.
 
 ### Incremental Build Warning
 
@@ -139,15 +178,16 @@ To activate this functionality, be sure to run `npx lefthook install` after clon
 
 ## References
 
-- [Bundling TypeScript in different formats with rollup.js](https://datomarjanidze.medium.com/bundling-typescript-in-different-formats-with-rollup-js-3397b3a84e4e)
+- [Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)
 
-- [TypeScript and NPM package.json exports the 2024 way](https://www.kravchyk.com/typescript-npm-package-json-exports/). Note that [this snippet](https://www.kravchyk.com/typescript-npm-package-json-exports/#:~:text=the%20types%20may%20need%20to%20be%20.d.cjs) is wrong; it should read _the types may need to be `.d.cts`_. That's how this template is implemented. Also note that we're just using a second (and third) `rollup` type declarations target instead of employing [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy) as suggested in the article.
+- [Bundling TypeScript in different formats with rollup.js](https://datomarjanidze.medium.com/bundling-typescript-in-different-formats-with-rollup-js-3397b3a84e4e)
 
 - [Naming conventions for Git Branches — a Cheatsheet](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)
 
+- [TypeScript and NPM package.json exports the 2024 way](https://www.kravchyk.com/typescript-npm-package-json-exports/). Note that [this snippet](https://www.kravchyk.com/typescript-npm-package-json-exports/#:~:text=the%20types%20may%20need%20to%20be%20.d.cjs) is wrong; it should read _the types may need to be `.d.cts`_. That's how this template is implemented. Also note that we're just using a second (and third) `rollup` type declarations target instead of employing [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy) as suggested in the article.
+
 ## Coming Soon
 
-- CLI support with [`commander`](https://www.npmjs.com/package/commander)
 - DotEnv support with [`get-dotenv`](https://www.npmjs.com/package/@karmaniverous/get-dotenv)
 
 ---
