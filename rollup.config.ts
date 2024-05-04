@@ -1,5 +1,6 @@
 import aliasPlugin, { Alias } from '@rollup/plugin-alias';
 import commonjsPlugin from '@rollup/plugin-commonjs';
+import jsonPlugin from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terserPlugin from '@rollup/plugin-terser';
 import typescriptPlugin from '@rollup/plugin-typescript';
@@ -11,7 +12,12 @@ import { packageName } from './src/util/packageName';
 
 const outputPath = `dist`;
 
-const commonPlugins = [commonjsPlugin(), nodeResolve(), typescriptPlugin()];
+const commonPlugins = [
+  commonjsPlugin(),
+  jsonPlugin(),
+  nodeResolve(),
+  typescriptPlugin(),
+];
 
 const commonAliases: Alias[] = [];
 
