@@ -7,6 +7,7 @@ Getting all of these pieces to work gracefully together is not trivial, especial
 This template is designed to help you get all of these pieces working together in harmony, right out of the box, so you can focus on your code. It includes fully-configured support for:
 
 ✅ Code authoring with [TypeScript](https://www.typescriptlang.org/).<br>
+✅ Inline documentation with [TSDoc](https://tsdoc.org/).<br>
 ✅ CLI generation with [Commander](https://www.npmjs.com/package/commander).<br>
 ✅ Logging with [tslog](https://tslog.js.org/).<br>
 ✅ Code formatting with [Prettier](https://prettier.io/).<br>
@@ -31,6 +32,14 @@ Also, type `@recommended` into the VSCode Extensions sidebar and install the rec
 You want to write straight TS code without having to jump through weird hoops like adding a `.js` extension to your TS imports. ([Click here](https://stackoverflow.com/questions/75807785/why-do-i-need-to-include-js-extension-in-typescript-import-for-custom-module) to dive into that hole. 🙄)
 
 Long story short: you can. Just write your code in the `src` directory and import it as you would any other module. The [bundling process](#bundling) will take care of the rest.
+
+## Inline Documentation
+
+This template uses [TSDoc](https://tsdoc.org/) for inline documentation. TSDoc is similar to JSDoc, but is way less verbose as it can take advantage of TypeScript's type system. It also has better support for documenting generics and other TypeScript-specific features.
+
+TSdoc comments are automatically included in your bundled code, so you can use them to document your code for IntelliSense in JavaScript as well as TypeScript.
+
+The template also includes linting support for your TSDoc comments to keep you out of trouble. Just run `npm run lint` to check your comments along with the rest of your code, and be sure to check out the great [TSDoc documentation](https://tsdoc.org/) for more details!
 
 ## CLI Generation
 

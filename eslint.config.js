@@ -1,12 +1,11 @@
 import eslint from '@eslint/js';
 import prettierPlugin from 'eslint-config-prettier';
 import mochaPlugin from 'eslint-plugin-mocha';
-// @ts-expect-error: could not find a type declaration file
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
+import tsDocPlugin from 'eslint-plugin-tsdoc';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
@@ -21,8 +20,10 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    plugins: { 'simple-import-sort': simpleImportSortPlugin },
+    plugins: {
+      'simple-import-sort': simpleImportSortPlugin,
+      tsdoc: tsDocPlugin,
+    },
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',
       'mocha/no-skipped-tests': 'off',
@@ -30,6 +31,7 @@ export default tseslint.config(
       'no-unused-vars': 'off',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      'tsdoc/syntax': 'warn',
     },
   },
 );
