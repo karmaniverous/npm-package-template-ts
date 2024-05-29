@@ -102,7 +102,7 @@ See the [`logger` module](./src/util/logger.ts) for more details of this impleme
 
 **If you plan to build IIFE modules, you should avoid the `silly` and `fatal` log levels, as these do not exist on `console`!**
 
-This is a bit of a hack, but it works. If you have a better solution, please submit a PR!
+This is a bit of a hack, but it works. If you have a better solution, please [submit a PR](https://github.com/karmaniverous/npm-package-template-ts/issues/10)!
 
 ## Formatting
 
@@ -156,7 +156,7 @@ Incremental builds are turned on in this template. This will save you some build
 (!) [plugin typescript] @rollup/plugin-typescript: outputToFilesystem option is defaulting to true.
 ```
 
-This is a [known issue](https://github.com/rollup/plugins/issues/1227) and should have no negative effect on your build. If you can figure out how to suppress this warning, please submit a PR!
+This is a [known issue](https://github.com/rollup/plugins/issues/1227) and should have no negative effect on your build. If you can figure out how to suppress this warning, please [submit a PR](https://github.com/karmaniverous/npm-package-template-ts/issues/11)!
 
 ## Publishing
 
