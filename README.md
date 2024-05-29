@@ -76,6 +76,8 @@ Providing a detailed tutorial on Commander is really out of scope for this READM
 
 You can build on this example to create a MUCH more complex CLI! See the [Commander documentation](https://www.npmjs.com/package/commander) for more details.
 
+**If your project requires an extensive, config-driven CLI, you might want to use my [get-dotenv-child](https://github.com/karmaniverous/get-dotenv-child) template instead!**
+
 ## Logging
 
 Logging is provided by [tslog](https://tslog.js.org). Just import & use the pre-configured logger, like this:
