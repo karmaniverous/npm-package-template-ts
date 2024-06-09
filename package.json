@@ -1,13 +1,13 @@
 {
   "author": "Jason G. Williscroft",
   "bugs": {
-    "url": "https://github.com/karmaniverous/serify-deserify/issues"
+    "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
   },
   "dependencies": {
     "is-what": "^5.0.1",
     "tslog": "^4.9.2"
   },
-  "description": "Reversibly transform unserializable values into serializable ones. Includes Redux middleware.",
+  "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
     "@eslint/js": "^9.4.0",
     "@reduxjs/toolkit": "^2.2.5",
@@ -57,26 +57,23 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/karmaniverous/serify-deserify#readme",
+  "homepage": "https://github.com/karmaniverous/npm-package-template-ts#readme",
   "keywords": [
-    "bigint",
-    "deserialize",
-    "date",
-    "json",
-    "map",
-    "parse",
-    "redux",
-    "serialize",
-    "serializable",
-    "set",
-    "state",
-    "stringify",
+    "chai",
+    "eslint",
+    "lefthook",
+    "mocha",
+    "npm",
+    "nyc",
+    "prettier",
+    "rollup",
+    "template",
     "typescript"
   ],
   "license": "BSD-3-Clause",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "name": "@karmaniverous/serify-deserify",
+  "name": "@karmaniverous/npm-package-template-ts",
   "publishConfig": {
     "access": "public"
   },
@@ -107,7 +104,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/karmaniverous/serify-deserify.git"
+    "url": "git+https://github.com/karmaniverous/npm-package-template-ts.git"
   },
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
