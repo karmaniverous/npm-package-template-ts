@@ -169,6 +169,8 @@ Just run `npm run release` and the following will happen:
 - Rollup will bundle your code.
 - ReleaseIt will create a release on GitHub and publish your package to NPM.
 
+To preserve Git Flow integrity, `npm run release` will only run on the `main` branch. It is often useful, though, to create a pre-release version from a feature branch. To do this, run `npm run release:pre` on any branch.
+
 See the `release-it` section in [`package.json`](./package.json) for details.
 
 ## Validating Your Package
