@@ -1,22 +1,16 @@
 {
-  "author": "Jason Williscroft",
-  "bin": {
-    "mycli": "./dist/mycli.cli.mjs"
-  },
+  "author": "Jason G. Williscroft",
   "bugs": {
-    "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
+    "url": "https://github.com/karmaniverous/serify-deserify/issues"
   },
   "dependencies": {
-    "commander": "^12.1.0",
+    "is-what": "^5.0.1",
     "tslog": "^4.9.2"
   },
-  "description": "A feature-rich NPM package template for TypeScript projects.",
+  "description": "Reversibly transform unserializable values into serializable ones. Includes Redux middleware.",
   "devDependencies": {
-    "@commander-js/extra-typings": "^12.1.0",
     "@eslint/js": "^9.4.0",
-    "@rollup/plugin-alias": "^5.1.0",
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-json": "^6.1.0",
+    "@reduxjs/toolkit": "^2.2.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
@@ -24,7 +18,6 @@
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint-plugin-mocha": "^10.4.0",
-    "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.2",
     "auto-changelog": "^2.4.0",
@@ -34,8 +27,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-mocha": "^10.4.3",
     "eslint-plugin-simple-import-sort": "^12.1.0",
-    "eslint-plugin-tsdoc": "^0.2.17",
-    "fs-extra": "^11.2.0",
     "jsdom-global": "^3.0.2",
     "lefthook": "^1.6.15",
     "mocha": "^10.4.0",
@@ -66,17 +57,26 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/karmaniverous/npm-package-template-ts#readme",
+  "homepage": "https://github.com/karmaniverous/serify-deserify#readme",
   "keywords": [
-    "npm",
-    "package",
-    "template",
+    "bigint",
+    "deserialize",
+    "date",
+    "json",
+    "map",
+    "parse",
+    "redux",
+    "serialize",
+    "serializable",
+    "set",
+    "state",
+    "stringify",
     "typescript"
   ],
   "license": "BSD-3-Clause",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "name": "@karmaniverous/npm-package-template-ts",
+  "name": "@karmaniverous/serify-deserify",
   "publishConfig": {
     "access": "public"
   },
@@ -98,7 +98,7 @@
       "after:release": [
         "git switch -c release/${version}",
         "git push -u origin release/${version}",
-        "git switch main"
+        "git switch ${branchName}"
       ]
     },
     "npm": {
@@ -107,16 +107,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/karmaniverous/npm-package-template-ts"
+    "url": "git+https://github.com/karmaniverous/serify-deserify.git"
   },
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
+    "postinstall": "npm audit fix",
     "release": "release-it",
+    "release:pre": "vc -c \"release-it --no-git.requireBranch --github.prerelease --preRelease\"",
     "test": "cross-env LOG_LEVEL=debug nyc mocha"
   },
   "type": "module",
   "types": "dist/index.d.ts",
-  "version": "0.4.1"
+  "version": "2.0.5"
 }
