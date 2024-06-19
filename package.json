@@ -1,16 +1,22 @@
 {
-  "author": "Jason G. Williscroft",
+  "author": "Jason Williscroft",
+  "bin": {
+    "mycli": "./dist/mycli.cli.mjs"
+  },
   "bugs": {
     "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
   },
   "dependencies": {
-    "is-what": "^5.0.1",
-    "tslog": "^4.9.2"
+    "commander": "^12.1.0",
+    "tslog": "^4.9.3"
   },
   "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
-    "@eslint/js": "^9.4.0",
-    "@reduxjs/toolkit": "^2.2.5",
+    "@commander-js/extra-typings": "^12.1.0",
+    "@eslint/js": "^9.5.0",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
@@ -18,8 +24,9 @@
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint-plugin-mocha": "^10.4.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.5",
     "auto-changelog": "^2.4.0",
     "chai": "^5.1.1",
     "cross-env": "^7.0.3",
@@ -27,11 +34,14 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-mocha": "^10.4.3",
     "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "fs-extra": "^11.2.0",
     "jsdom-global": "^3.0.2",
-    "lefthook": "^1.6.15",
+    "knip": "^5.21.2",
+    "lefthook": "^1.6.16",
     "mocha": "^10.4.0",
-    "nyc": "^15.1.0",
-    "prettier": "^3.3.1",
+    "nyc": "^17.0.0",
+    "prettier": "^3.3.2",
     "release-it": "^17.3.0",
     "rimraf": "^5.0.7",
     "rollup": "^4.18.0",
@@ -40,7 +50,7 @@
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.12.0"
+    "typescript-eslint": "^7.13.1"
   },
   "exports": {
     ".": {
@@ -108,9 +118,9 @@
   },
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "knip": "knip",
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
-    "postinstall": "npm audit fix",
     "release": "release-it",
     "release:pre": "vc -c \"release-it --no-git.requireBranch --github.prerelease --preRelease\"",
     "test": "cross-env LOG_LEVEL=debug nyc mocha"
