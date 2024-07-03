@@ -127,5 +127,5 @@
   },
   "type": "module",
   "types": "dist/index.d.ts",
-  "version": "0.5.1"
+  "version": "0.5.2"
 }
