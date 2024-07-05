@@ -126,7 +126,7 @@ Unit test support is provided by [Mocha](https://mochajs.org), using the [Chai](
 
 Any file containing `.test.` in its name (e.g. [`foo.test.ts`](./src/foo.test.ts)) will be treated as a test file and executed by Mocha. See [`.mocharc.json`](./.mocharc.json) for configuration details.
 
-Just run `npm test` to execute your tests.
+Just run `npm run test` to execute your tests.
 
 Test coverage reporting is provided by [`nyc`](https://www.npmjs.com/package/nyc) and runs every time you execute your tests. If you execute your tests from the command line, you will see a coverage report at the bottom of the run. You can also see a prettier version of this report by opening `coverage/index.html` in your browser.
 
