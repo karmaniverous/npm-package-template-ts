@@ -122,7 +122,7 @@
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
     "release": "release-it",
-    "release:pre": "vc -c \"release-it --no-git.requireBranch --github.prerelease --preRelease\"",
+    "release:pre": "release-it --no-git.requireBranch --github.prerelease --preRelease",
     "test": "cross-env LOG_LEVEL=debug nyc mocha"
   },
   "type": "module",
