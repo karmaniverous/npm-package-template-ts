@@ -2,6 +2,7 @@
 .rollup.cache/
 .tsbuildinfo
 *.local
+local/
 coverage/
 dist/
 esm/
