@@ -42,8 +42,8 @@ const config: RollupOptions[] = [
     ...commonInputOptions,
     output: [
       {
+        dir: `${outputPath}/mjs`,
         extend: true,
-        file: `${outputPath}/index.mjs`,
         format: 'esm',
       },
     ],
@@ -82,8 +82,8 @@ const config: RollupOptions[] = [
     ...commonInputOptions,
     output: [
       {
+        dir: `${outputPath}/cjs`,
         extend: true,
-        file: `${outputPath}/index.cjs`,
         format: 'cjs',
       },
     ],
@@ -118,8 +118,8 @@ const config: RollupOptions[] = [
     input: `src/cli/${c}/index.ts`,
     output: [
       {
+        dir: `${outputPath}/cli/${c}`,
         extend: true,
-        file: `${outputPath}/${c}.cli.mjs`,
         format: 'esm',
       },
     ],
