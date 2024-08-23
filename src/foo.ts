@@ -1,5 +1,3 @@
-import { logger } from './util/logger';
-
 /**
  * Foos your bar!
  *
@@ -15,7 +13,7 @@ import { logger } from './util/logger';
  * @see {@link https://tsdoc.org/ | TSDoc} for more info!
  */
 export const foo = (target: string | undefined) => {
-  logger.debug(`fooing '${target ?? 'nothing'}'!`);
+  console.debug(`fooing '${target ?? 'nothing'}'!`);
 
   return `foo ${target ?? 'nothing'}`;
 };
