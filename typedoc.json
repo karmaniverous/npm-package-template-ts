@@ -1,0 +1,18 @@
+{
+  "$schema": "https://typedoc-plugin-markdown.org/schema.json",
+  "entryFileName": "README.md",
+  "entryPoints": ["./src/index.ts"],
+  "enumMembersFormat": "table",
+  "expandObjects": true,
+  "gitRevision": "main",
+  "indexFormat": "table",
+  "out": "./docs/",
+  "outputFileStrategy": "modules",
+  "parametersFormat": "table",
+  "plugin": ["typedoc-plugin-markdown"],
+  "propertiesFormat": "table",
+  "publicPath": "https://github.com/karmaniverous/npm-package-template-ts",
+  "readme": "none",
+  "typeDeclarationFormat": "table",
+  "useCodeBlocks": true
+}

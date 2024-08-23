@@ -48,6 +48,8 @@
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",
+    "typedoc": "^0.26.6",
+    "typedoc-plugin-markdown": "^4.2.5",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.18.0"
   },
@@ -117,6 +119,7 @@
   },
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "docs": "typedoc",
     "knip": "knip",
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
