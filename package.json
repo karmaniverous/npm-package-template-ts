@@ -101,7 +101,8 @@
       "after:init": [
         "npm run lint",
         "npm run test",
-        "npm run build"
+        "npm run build",
+        "npm run docs"
       ],
       "after:release": [
         "git switch -c release/${version}",
