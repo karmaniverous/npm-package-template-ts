@@ -9,7 +9,6 @@ This template is designed to help you get all of these pieces working together i
 ✅ Code authoring with [TypeScript](https://www.typescriptlang.org/).<br>
 ✅ Inline documentation with [TSDoc](https://tsdoc.org/).<br>
 ✅ CLI generation with [Commander](https://www.npmjs.com/package/commander).<br>
-✅ Logging with [tslog](https://tslog.js.org/).<br>
 ✅ Code formatting with [Prettier](https://prettier.io/).<br>
 ✅ Linting with [ESLint](https://eslint.org/).<br>
 ✅ Unit testing with [Mocha](https://mochajs.org/) & [Chai](https://www.chaijs.com/).<br>
@@ -77,32 +76,6 @@ Providing a detailed tutorial on Commander is really out of scope for this READM
 You can build on this example to create a MUCH more complex CLI! See the [Commander documentation](https://www.npmjs.com/package/commander) for more details.
 
 **If your project requires an extensive, config-driven CLI, you might want to use my [get-dotenv-child](https://github.com/karmaniverous/get-dotenv-child) template instead!**
-
-## Logging
-
-Logging is provided by [tslog](https://tslog.js.org). Just import & use the pre-configured logger, like this:
-
-```typescript
-import { logger } from './util/logger';
-
-logger.debug('This is a debug message!');
-```
-
-By default, logs are suppressed when `LOG_LEVEL` is either invalid or undefined. For example, the test script uses `cross-env` to enable debug logging during unit testing like this:
-
-```typescript
-cross-env LOG_LEVEL=debug nyc mocha
-```
-
-See the [`logger` module](./src/util/logger.ts) for more details of this implementation, and the [tslog documentation](https://tslog.js.org) for tons of configuration options.
-
-### IIFE Logging
-
-[tslog](https://tslog.js.org) appears not to play nicely with IIFE modules, so I've added a [`rollup.config.ts` replacement rule](./rollup.config.ts#L21-L24) that replaces the `tslog` logger with `console` for all IIFE builds.
-
-**If you plan to build IIFE modules, you should avoid the `silly` and `fatal` log levels, as these do not exist on `console`!**
-
-This is a bit of a hack, but it works. If you have a better solution, please [submit a PR](https://github.com/karmaniverous/npm-package-template-ts/issues/10)!
 
 ## Formatting
 

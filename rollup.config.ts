@@ -26,10 +26,6 @@ const commonInputOptions: InputOptions = {
   plugins: [aliasPlugin({ entries: commonAliases }), commonPlugins],
 };
 
-const iifeAliases = [
-  { find: /^(.*)\/util\/logger$/, replacement: '$1/util/console' },
-];
-
 const iifeCommonOutputOptions: OutputOptions = {
   name: packageName ?? 'unknown',
 };
@@ -45,6 +41,7 @@ const config: RollupOptions[] = [
         dir: `${outputPath}/mjs`,
         extend: true,
         format: 'esm',
+        preserveModules: true,
       },
     ],
   },
@@ -54,7 +51,7 @@ const config: RollupOptions[] = [
     ...commonInputOptions,
     plugins: [
       aliasPlugin({
-        entries: [...commonAliases, ...iifeAliases],
+        entries: commonAliases,
       }),
       commonPlugins,
     ],
@@ -85,6 +82,7 @@ const config: RollupOptions[] = [
         dir: `${outputPath}/cjs`,
         extend: true,
         format: 'cjs',
+        preserveModules: true,
       },
     ],
   },
