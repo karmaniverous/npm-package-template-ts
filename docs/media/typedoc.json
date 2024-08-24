@@ -1,17 +1,18 @@
 {
   // "$schema": "https://typedoc-plugin-markdown.org/schema.json",
+  "cname": "karmanivero.us",
   // "entryFileName": "README.md",
   "entryPoints": ["./src/index.ts"],
   // "enumMembersFormat": "table",
   // "expandObjects": true,
   // "gitRevision": "main",
+  "includeVersion": true,
   // "indexFormat": "table",
   "out": "./docs/"
   // "outputFileStrategy": "modules",
   // "parametersFormat": "table",
   // "plugin": ["typedoc-plugin-markdown"],
   // "propertiesFormat": "table",
-  // "readme": "none",
   // "typeDeclarationFormat": "table",
   // "useCodeBlocks": true
 }
