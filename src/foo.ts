@@ -1,4 +1,9 @@
 /**
+ * The kind of thing you could foo.
+ */
+export type FooTarget = string | undefined;
+
+/**
  * Foos your bar!
  *
  * @param target - The target to foo.
@@ -12,7 +17,7 @@
  *
  * @see {@link https://tsdoc.org/ | TSDoc} for more info!
  */
-export const foo = (target: string | undefined) => {
+export const foo = (target: FooTarget) => {
   console.debug(`fooing '${target ?? 'nothing'}'!`);
 
   return `foo ${target ?? 'nothing'}`;
