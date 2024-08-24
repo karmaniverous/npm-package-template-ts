@@ -1,5 +1,3 @@
-> [API Documentation](./docs/README.md)
-
 # TypeScript NPM Package Template
 
 <span style="color: darkBlue;">**Writing great TypeScript is only half the battle!**</span> You also need to instrument it, format it, lint it, test it, bundle it, and publish it!
