@@ -1,18 +1,15 @@
 {
-  // "$schema": "https://typedoc-plugin-markdown.org/schema.json",
-  "cname": "karmanivero.us",
-  // "entryFileName": "README.md",
   "entryPoints": ["./src/index.ts"],
-  // "enumMembersFormat": "table",
-  // "expandObjects": true,
-  // "gitRevision": "main",
   "includeVersion": true,
-  // "indexFormat": "table",
-  "out": "./docs/"
-  // "outputFileStrategy": "modules",
-  // "parametersFormat": "table",
-  // "plugin": ["typedoc-plugin-markdown"],
-  // "propertiesFormat": "table",
-  // "typeDeclarationFormat": "table",
-  // "useCodeBlocks": true
+  "out": "./docs/",
+  "plugin": ["typedoc-plugin-replace-text"],
+  "replaceText": {
+    "replacements": [
+      {
+        "pattern": "<!-- TYPEDOC_EXCLUDE -->.*?<!-- /TYPEDOC_EXCLUDE -->",
+        "flags": "gis",
+        "replace": ""
+      }
+    ]
+  }
 }
