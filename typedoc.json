@@ -1,6 +1,8 @@
 {
   "entryPoints": ["./src/index.ts"],
-  "includeVersion": true,
+  "navigationLinks": {
+    "@karmaniverous": "https://github.com/karmaniverous"
+  },
   "out": "./docs/",
   "plugin": ["typedoc-plugin-replace-text"],
   "replaceText": {
@@ -11,5 +13,9 @@
         "replace": ""
       }
     ]
-  }
+  },
+  "sidebarLinks": {
+    "API Docs Home": "./index.html"
+  },
+  "titleLink": "https://github.com/karmaniverous/npm-package-template-ts"
 }
