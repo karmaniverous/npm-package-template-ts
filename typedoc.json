@@ -15,7 +15,7 @@
     ]
   },
   "sidebarLinks": {
-    "API Docs Home": "./index.html"
+    "API Docs Home": "/index.html"
   },
   "titleLink": "https://github.com/karmaniverous/npm-package-template-ts"
 }
