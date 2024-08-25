@@ -6,11 +6,11 @@
 
 # TypeScript NPM Package Template
 
-<span style="color: darkBlue;">**Writing great TypeScript is only half the battle!**</span> You also need to instrument it, format it, lint it, test it, bundle it, and publish it!
+<span style="color: darkBlue;">**Writing great TypeScript is only half the battle!**</span> You also need to instrument it, format it, lint it, test it, bundle it, document it, and publish it!
 
-Getting all of these pieces to work gracefully together is not trivial, especially given that a bunch of popular tools have recently released major versions that don't always play well together.
+Getting all of these pieces to work gracefully together is not trivial.
 
-This template is designed to help you get all of these pieces working together in harmony, right out of the box, so you can focus on your code. It includes fully-configured support for:
+This template puts those pieces together in a way that just WORKS, right out of the box, so you can focus on your code. It includes fully-configured support for:
 
 ✅ [Code authoring](#code-authoring) with [TypeScript](https://www.typescriptlang.org/).<br>
 ✅ [Inline documentation](#inline-documentation) with [TSDoc](https://tsdoc.org/).<br>
@@ -35,7 +35,7 @@ npx lefthook install  # install Git hooks
 
 Also, type `@recommended` into the VSCode Extensions sidebar and install the recommended extensions!
 
-Make sure to change all repository & personal references in [`package.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/package.json) & [`typedoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/typedoc.json) to reflect your own info.
+Change all repository & personal references in [`package.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/package.json) & [`typedoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/typedoc.json) to reflect your own info.
 
 Before your first commit, be sure to reset your project's version number (e.g. to `0.0.0`) in `package.json`.
 
@@ -134,16 +134,6 @@ Just run `npm run build` to bundle your code, and the output will be in the `dis
 
 See [`rollup.config.ts`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/rollup.config.ts) for details. If you don't need all of the output types listed above, it should be fairly straightforward to modify this file to suit your needs.
 
-### Incremental Build Warning
-
-Incremental builds are turned on in this template. This will save you some build time, but [`@rollup/plugin-typescript`](https://www.npmjs.com/package/@rollup/plugin-typescript) will emit the following warning at build time:
-
-```bash
-(!) [plugin typescript] @rollup/plugin-typescript: outputToFilesystem option is defaulting to true.
-```
-
-This is a [known issue](https://github.com/rollup/plugins/issues/1227) and should have no negative effect on your build. If you can figure out how to suppress this warning, please [submit a PR](https://github.com/karmaniverous/npm-package-template-ts/issues/11)!
-
 ## Publishing
 
 This template uses [ReleaseIt](https://github.com/release-it/release-it?tab=readme-ov-file#release-it-) to create a release on GitHub and publish your package to NPM.
@@ -153,6 +143,7 @@ Just run `npm run release` and the following will happen:
 - ESLint will lint your code.
 - Mocha will execute your tests and NYC will assess code coverage. Open `coverage/index.html` to see the results.
 - Rollup will bundle your code.
+- TypeDoc will generate & commit your API documentation.
 - ReleaseIt will create a release on GitHub and publish your package to NPM.
 
 To preserve Git Flow integrity, `npm run release` will only run on the `main` branch. It is often useful, though, to create a pre-release version from a feature branch. To do this, run `npm run release:pre` on any branch.
