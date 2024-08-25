@@ -5,6 +5,7 @@
   },
   "out": "./docs/",
   "plugin": ["typedoc-plugin-replace-text"],
+  "projectDocuments": ["./CHANGELOG.md"],
   "replaceText": {
     "replacements": [
       {
@@ -13,9 +14,6 @@
         "replace": ""
       }
     ]
-  },
-  "sidebarLinks": {
-    "API Docs Home": "https://karmanivero.us/npm-package-template-ts"
   },
   "titleLink": "https://github.com/karmaniverous/npm-package-template-ts"
 }
