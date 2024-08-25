@@ -12,6 +12,7 @@
   "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
     "@commander-js/extra-typings": "^12.1.0",
+    "@dotenvx/dotenvx": "^1.10.2",
     "@eslint/js": "^9.9.0",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -28,7 +29,6 @@
     "@types/node": "^20.16.1",
     "auto-changelog": "^2.4.0",
     "chai": "^5.1.1",
-    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-mocha": "^10.5.0",
@@ -127,9 +127,9 @@
     "knip": "knip",
     "lint": "eslint src/** && prettier -c src",
     "lint:fix": "eslint --fix src/** && prettier --write src",
-    "release": "release-it",
-    "release:pre": "release-it --no-git.requireBranch --github.prerelease --preRelease",
-    "test": "cross-env LOG_LEVEL=debug nyc mocha"
+    "release": "dotenvx run -f .env.local -- release-it",
+    "release:pre": "dotenvx run -f .env.local -- release-it --no-git.requireBranch --github.prerelease --preRelease",
+    "test": "dotenvx run --quiet --log-level=LOG_LEVEL=debug -- nyc mocha"
   },
   "type": "module",
   "types": "dist/index.d.ts",
