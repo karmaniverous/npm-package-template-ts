@@ -25,6 +25,7 @@ export default tseslint.config(
       tsdoc: tsDocPlugin,
     },
     rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unused-vars': 'error',
       'mocha/no-skipped-tests': 'off',
       'mocha/no-top-level-hooks': 'off',

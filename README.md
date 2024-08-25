@@ -55,6 +55,8 @@ TSdoc comments are automatically included in your bundled code, so you can use t
 
 The template also includes linting support for your TSDoc comments to keep you out of trouble. Just run `npm run lint` to check your comments along with the rest of your code, and be sure to check out the great [TSDoc documentation](https://tsdoc.org/) for more details!
 
+Also note that this template generates [API Documentation](#api-documentation) with [TypeDoc](https://typedoc.org/). The TypeDoc spec includes a few tags that TSDoc doesn't support. [`tsdoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/tsdoc.json) specifies these extra tags and ensures you can use them in your code without generating ESLint warnings!
+
 ## CLI Generation
 
 This template uses [Commander](https://www.npmjs.com/package/commander) to generate a CLI for your package.
@@ -136,6 +138,16 @@ Just run `npm run build` to bundle your code, and the output will be in the `dis
 
 See [`rollup.config.ts`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/rollup.config.ts) for details. If you don't need all of the output types listed above, it should be fairly straightforward to modify this file to suit your needs.
 
+### Incremental Build Warning
+
+Incremental builds are turned on in this template. This will save you some build time, but [`@rollup/plugin-typescript`](https://www.npmjs.com/package/@rollup/plugin-typescript) will emit the following warning at build time:
+
+```bash
+(!) [plugin typescript] @rollup/plugin-typescript: outputToFilesystem option is defaulting to true.
+```
+
+This is a [known issue](https://github.com/rollup/plugins/issues/1227) and should have no negative effect on your build. If you can figure out how to suppress this warning, please [submit a PR](https://github.com/karmaniverous/npm-package-template-ts/issues/11)!
+
 ## Publishing
 
 This template uses [ReleaseIt](https://github.com/release-it/release-it?tab=readme-ov-file#release-it-) to create a release on GitHub and publish your package to NPM.
@@ -210,6 +222,8 @@ Some tips:
 
 - I added convenient links in [`typedoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/typedoc.json) to the project GitHub repository and my GitHub profile. You'll want to change these to reflect your own info.
 
+Also note that this template generates [API Documentation](#api-documentation) with [TypeDoc](https://typedoc.org/). The TypeDoc spec includes a few tags that TSDoc doesn't support. [`tsdoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/tsdoc.json) specifies these extra tags and ensures you can use them in your code without generating ESLint warnings!
+
 ## References
 
 - [Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)
@@ -222,5 +236,4 @@ Some tips:
 
 ---
 
-See more great templates and other tools on
-[my GitHub Profile](https://github.com/karmaniverous)!
+Built for you with ❤️ on Bali! Find more great tools & templates on [my GitHub Profile](https://github.com/karmaniverous).
