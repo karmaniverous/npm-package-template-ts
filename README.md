@@ -1,6 +1,6 @@
 <!-- TYPEDOC_EXCLUDE -->
 
-> [API Documentation](https://karmaniverous.github.io/npm-package-template-ts)
+> [API Documentation](https://karmaniverous.github.io/npm-package-template-ts) • [CHANGELOG](https://github.com/karmaniverous/npm-package-template-ts/tree/main/CHANGELOG.md)
 
 <!-- /TYPEDOC_EXCLUDE -->
 
@@ -38,6 +38,8 @@ Also, type `@recommended` into the VSCode Extensions sidebar and install the rec
 Change all repository & personal references in [`package.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/package.json) & [`typedoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/typedoc.json) to reflect your own info.
 
 Before your first commit, be sure to reset your project's version number (e.g. to `0.0.0`) in `package.json`.
+
+To streamline the release process from your desktop, set up a GitHub [Personal Access Token](https://github.com/settings/tokens) and follow the instructions in [`.env.local.template`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.env.local.template).
 
 ## Code Authoring
 
