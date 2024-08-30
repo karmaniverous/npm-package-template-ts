@@ -6,7 +6,7 @@
 
 # TypeScript NPM Package Template
 
-<span style="color: darkBlue;">**Writing great TypeScript is only half the battle!**</span> You also need to instrument it, format it, lint it, test it, bundle it, document it, and publish it!
+**Writing great TypeScript is only half the battle!** You also need to instrument it, format it, lint it, test it, bundle it, document it, and publish it!
 
 Getting all of these pieces to work gracefully together is not trivial.
 
@@ -217,8 +217,6 @@ Some tips:
 > Do you know how to restrict this behavior to certain file extensions? [Start a discussion](https://github.com/karmaniverous/npm-package-template-ts/discussions) and let me know!
 
 - The organization of your documentation site mostly reflects the organization of your code. So make full use of the [tags](https://typedoc.org/guides/tags/) supported by TypeDoc!
-
-- There are some TypeDoc tags (like [`@module`](https://typedoc.org/tags/module/)) that are not supported by TSDoc. In this template, ESLint is configured via the [`eslint-plugin-tsdoc`](https://www.npmjs.com/package/eslint-plugin-tsdoc) plugin to enforce the use of valid TSDoc comments. This behavior is not granular: the plugin only adds a single ESLint rule (`tsdoc/syntax`), so it is either on or off. You COULD uninstall the plugin or disable the rule to use unsupported TypeDoc tags... but a better plan would be to restrict yourself to valid TSDoc tags.
 
 - I added convenient links in [`typedoc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/typedoc.json) to the project GitHub repository and my GitHub profile. You'll want to change these to reflect your own info.
 
