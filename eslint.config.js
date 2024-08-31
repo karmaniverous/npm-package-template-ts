@@ -26,6 +26,7 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-vars': 'error',
       'mocha/no-skipped-tests': 'off',
       'mocha/no-top-level-hooks': 'off',
