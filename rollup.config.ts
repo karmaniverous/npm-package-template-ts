@@ -29,6 +29,7 @@ const commonInputOptions: InputOptions = {
   external: [
     ...Object.keys((pkg as unknown as Package).dependencies ?? {}),
     ...Object.keys((pkg as unknown as Package).peerDependencies ?? {}),
+    'tslib',
   ],
   plugins: [aliasPlugin({ entries: commonAliases }), ...commonPlugins],
 };
