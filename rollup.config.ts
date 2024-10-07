@@ -30,7 +30,7 @@ const commonInputOptions: InputOptions = {
     ...Object.keys((pkg as unknown as Package).dependencies ?? {}),
     ...Object.keys((pkg as unknown as Package).peerDependencies ?? {}),
   ],
-  plugins: [aliasPlugin({ entries: commonAliases }), commonPlugins],
+  plugins: [aliasPlugin({ entries: commonAliases }), ...commonPlugins],
 };
 
 const iifeCommonOutputOptions: OutputOptions = {
