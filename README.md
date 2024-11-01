@@ -148,6 +148,24 @@ Incremental builds are turned on in this template. This will save you some build
 
 This is a [known issue](https://github.com/rollup/plugins/issues/1227) and should have no negative effect on your build. If you can figure out how to suppress this warning, please [submit a PR](https://github.com/karmaniverous/npm-package-template-ts/issues/11)!
 
+### External Dependencies
+
+[`rollup.config.ts`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/rollup.config.ts) is configured to treat all non-dev and peer dependencies listed in `package.json` as external dependencies. This means...
+
+- These dependencies will not be bundled into your package, but should be installed as a matter of course when you run `npm install`.
+
+- Your distribution files will be located in your dist directory as specified in your `package.json` exports field (e.g. `dist/mjs/index.js`).
+
+It is possible for external dependencies to creep into your build. For example, let's say you have a dev dependency that you referenced in runtime code, but is actually included as a runtime dependency by some other package. In this case...
+
+- the dependency would _not_ be listed as an external dependency by `rollup.config.ts`, and
+
+- your distribution files would shift to `dist/mjs/src/index.js`, breaking your package.
+
+To prevent this, simply list the dependency as a regular dependency in your `package.json` file... **which is exactly where it belongs anyway!**
+
+This will restore the structure of your build AND ensure proper tree-shaking of your dependencies.
+
 ## Publishing
 
 This template uses [ReleaseIt](https://github.com/release-it/release-it?tab=readme-ov-file#release-it-) to create a release on GitHub and publish your package to NPM.
