@@ -1,4 +1,5 @@
 {
+  "entry": ["src/**/index.ts"],
   "ignoreDependencies": [
     "@types/mocha",
     "auto-changelog",
@@ -10,5 +11,9 @@
   "mocha": {
     "entry": ["*/**/*.test.!(*.*)"]
   },
-  "project": ["*/**", "!docs/**"]
+  "project": ["*/**", "!docs/**"],
+  "rules": {
+    "exports": "off",
+    "types": "off"
+  }
 }
