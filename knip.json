@@ -1,0 +1,14 @@
+{
+  "ignoreDependencies": [
+    "@types/mocha",
+    "auto-changelog",
+    "jsdom-global",
+    "mocha",
+    "source-map-support",
+    "ts-node"
+  ],
+  "mocha": {
+    "entry": ["*/**/*.test.!(*.*)"]
+  },
+  "project": ["*/**", "!docs/**"]
+}
