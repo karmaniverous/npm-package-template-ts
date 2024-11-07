@@ -18,6 +18,7 @@ This template puts those pieces together in a way that just WORKS, right out of 
 ✅ [Code formatting](#formatting) with [Prettier](https://prettier.io/).<br>
 ✅ [Linting](#linting) with [ESLint](https://eslint.org/).<br>
 ✅ [Unit testing](#unit-testing) with [Mocha](https://mochajs.org/) & [Chai](https://www.chaijs.com/).<br>
+✅ [Package pruning](#package-pruning) with [Knip](https://github.com/webpro-nl/knip).<br>
 ✅ [Bundling](#bundling) with [Rollup](https://rollupjs.org/).<br>
 ✅ [Publishing](#publishing) with [ReleaseIt](https://github.com/release-it/release-it).<br>
 ✅ [Git hooks](#git-hooks) with [Lefthook](https://github.com/evilmartians/lefthook).<br>
@@ -121,6 +122,12 @@ Just run `npm run test` to execute your tests.
 Test coverage reporting is provided by [`nyc`](https://www.npmjs.com/package/nyc) and runs every time you execute your tests. If you execute your tests from the command line, you will see a coverage report at the bottom of the run. You can also see a prettier version of this report by opening `coverage/index.html` in your browser.
 
 The [Mocha Test Explorer Extension](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter) is a great way to execute & debug your Mocha tests! It's included in the template's VSCode [workspace recommendations](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.vscode/extensions.json), and the template contains related [workspace settings](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.vscode/settings.json), so be sure to install recommended extensions when prompted!
+
+## Package Pruning
+
+[Knip](https://github.com/webpro-nl/knip) is a great command-line tool that finds unused files, dependencies and exports in your TypeScript project. Less code and dependencies lead to improved performance, less maintenance and easier refactorings!
+
+This template integrates Knip into your build process so you can prune your package at every release. Edit the [config file](https://github.com/karmaniverous/npm-package-template-ts/blob/main/knip.json) to add any new cutouts, and run `npm run knip` to prune your package on demand!
 
 ## Bundling
 

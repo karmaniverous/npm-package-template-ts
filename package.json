@@ -36,7 +36,7 @@
     "eslint-plugin-tsdoc": "^0.3.0",
     "fs-extra": "^11.2.0",
     "jsdom-global": "^3.0.2",
-    "knip": "^5.36.2",
+    "knip": "^5.36.3",
     "lefthook": "^1.8.2",
     "mocha": "^10.8.2",
     "nyc": "^17.1.0",
@@ -102,6 +102,7 @@
       "after:init": [
         "npm run lint",
         "npm run test",
+        "npm run knip",
         "npm run build"
       ],
       "before:npm:release": [
