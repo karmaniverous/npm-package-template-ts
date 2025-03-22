@@ -175,7 +175,7 @@ This will restore the structure of your build AND ensure proper tree-shaking of 
 
 ## Publishing
 
-This template uses [ReleaseIt](https://github.com/release-it/release-it?tab=readme-ov-file#release-it-) to create a release on GitHub and publish your package to NPM.
+This template uses [ReleaseIt](https://github.com/release-it/release-it) to create a release on GitHub and publish your package to NPM.
 
 Just run `npm run release` and the following will happen:
 
