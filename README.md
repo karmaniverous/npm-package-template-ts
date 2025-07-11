@@ -219,7 +219,7 @@ Update your repository's GitHub Pages settings as illustrated below, and this si
 
 If you already have a custom domain set up for a GitHub Pages site at `<your GitHub username>.github.io`, this documentation will appear at `<your custom domain>/<your repo name>`.
 
-For example, see https://karmanivero.us/npm-package-template-ts.
+For example, see https://docs.karmanivero.us/npm-package-template-ts.
 
 Finally, note that this README file contains a link in the header to this documentation site that does NOT appear in the copy of the README on the documentation site's home page.
 
