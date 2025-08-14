@@ -1,13 +1,13 @@
-import { expect } from 'chai';
+import { expect, suite, test } from 'vitest';
 
 import { foo } from './';
 
-describe('foo', function () {
-  it('should allow expression assertions', function () {
-    expect(true).to.be.true;
+suite('foo', () => {
+  test('should allow expression assertions', () => {
+    expect(true).toBe(true);
   });
 
-  it('should prefix bar', function () {
-    expect(foo('bar')).to.equal('foo bar');
+  test('should prefix bar', () => {
+    expect(foo('bar')).toBe('foo bar');
   });
 });

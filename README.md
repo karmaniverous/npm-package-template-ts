@@ -17,7 +17,7 @@ This template puts those pieces together in a way that just WORKS, right out of 
 ✅ [CLI generation](#cli-generation) with [Commander](https://www.npmjs.com/package/commander).<br>
 ✅ [Code formatting](#formatting) with [Prettier](https://prettier.io/).<br>
 ✅ [Linting](#linting) with [ESLint](https://eslint.org/).<br>
-✅ [Unit testing](#unit-testing) with [Mocha](https://mochajs.org/) & [Chai](https://www.chaijs.com/).<br>
+✅ [Unit testing](#unit-testing) with [Vitest](https://vitest.dev/).<br>
 ✅ [Package pruning](#package-pruning) with [Knip](https://github.com/webpro-nl/knip).<br>
 ✅ [Bundling](#bundling) with [Rollup](https://rollupjs.org/).<br>
 ✅ [Publishing](#publishing) with [ReleaseIt](https://github.com/release-it/release-it).<br>
@@ -113,15 +113,15 @@ The [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeu
 
 ## Unit Testing
 
-Unit test support is provided by [Mocha](https://mochajs.org), using the [Chai](https://www.chaijs.com) assertion library.
+Unit test support is provided by [Vitest](https://vitest.dev).
 
-Any file containing `.test.` in its name (e.g. [`foo.test.ts`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/src/foo.test.ts)) will be treated as a test file and executed by Mocha. See [`.mocharc.json`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.mocharc.json) for configuration details.
+Any file containing `.test.` in its name (e.g. [`foo.test.ts`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/src/foo.test.ts)) will be treated as a test file and executed by Vitest. See [`vitest.config.ts`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/vitest.config.ts) for configuration details.
 
 Just run `npm run test` to execute your tests.
 
-Test coverage reporting is provided by [`nyc`](https://www.npmjs.com/package/nyc) and runs every time you execute your tests. If you execute your tests from the command line, you will see a coverage report at the bottom of the run. You can also see a prettier version of this report by opening `coverage/index.html` in your browser.
+Test coverage reporting is provided by [Vitest](https://vitest.dev/guide/coverage.html) and runs every time you execute your tests. If you execute your tests from the command line, you will see a coverage report at the bottom of the run. You can also see a prettier version of this report by opening `coverage/lcov-report/index.html` in your browser.
 
-The [Mocha Test Explorer Extension](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter) is a great way to execute & debug your Mocha tests! It's included in the template's VSCode [workspace recommendations](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.vscode/extensions.json), and the template contains related [workspace settings](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.vscode/settings.json), so be sure to install recommended extensions when prompted!
+The [Vitest extension](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer) is a great way to execute & debug your Vitest tests! It's included in the template's VSCode [workspace recommendations](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.vscode/extensions.json), and the template contains related [workspace settings](https://github.com/karmaniverous/npm-package-template-ts/tree/main/.vscode/settings.json), so be sure to install recommended extensions when prompted!
 
 ## Package Pruning
 
@@ -180,7 +180,7 @@ This template uses [ReleaseIt](https://github.com/release-it/release-it) to crea
 Just run `npm run release` and the following will happen:
 
 - ESLint will lint your code.
-- Mocha will execute your tests and NYC will assess code coverage. Open `coverage/index.html` to see the results.
+- Vitest will execute your tests and assess code coverage. Open `coverage/lcov-report/index.html` to see the results.
 - Rollup will bundle your code.
 - TypeDoc will generate & commit your API documentation.
 - ReleaseIt will create a release on GitHub and publish your package to NPM.
