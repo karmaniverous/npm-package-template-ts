@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://docs.karmanivero.us/npm-package-template-ts/modules.html</loc>
-		<lastmod>2025-07-11T07:55:55.209Z</lastmod>
+		<loc>https://docs.karmanivero.us/npm-package-template-ts/index.html</loc>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
 	</url>
 	<url>
-		<loc>https://docs.karmanivero.us/npm-package-template-ts/index.html</loc>
-		<lastmod>2025-07-11T07:55:55.209Z</lastmod>
+		<loc>https://docs.karmanivero.us/npm-package-template-ts/modules.html</loc>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
+	</url>
+	<url>
+		<loc>https://docs.karmanivero.us/npm-package-template-ts/hierarchy.html</loc>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
 	</url>
 	<url>
 		<loc>https://docs.karmanivero.us/npm-package-template-ts/documents/CHANGELOG.html</loc>
-		<lastmod>2025-07-11T07:55:55.209Z</lastmod>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
 	</url>
 	<url>
 		<loc>https://docs.karmanivero.us/npm-package-template-ts/modules/index.html</loc>
-		<lastmod>2025-07-11T07:55:55.209Z</lastmod>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
 	</url>
 	<url>
 		<loc>https://docs.karmanivero.us/npm-package-template-ts/types/index.FooTarget.html</loc>
-		<lastmod>2025-07-11T07:55:55.209Z</lastmod>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
 	</url>
 	<url>
 		<loc>https://docs.karmanivero.us/npm-package-template-ts/functions/index.foo.html</loc>
-		<lastmod>2025-07-11T07:55:55.209Z</lastmod>
+		<lastmod>2025-08-17T10:37:32.242Z</lastmod>
 	</url>
 </urlset>
