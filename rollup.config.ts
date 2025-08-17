@@ -1,4 +1,6 @@
-import aliasPlugin, { Alias } from '@rollup/plugin-alias';
+import { createRequire } from 'node:module';
+
+import aliasPlugin, { type Alias } from '@rollup/plugin-alias';
 import commonjsPlugin from '@rollup/plugin-commonjs';
 import jsonPlugin from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -8,7 +10,10 @@ import fs from 'fs-extra';
 import type { InputOptions, OutputOptions, RollupOptions } from 'rollup';
 import dtsPlugin from 'rollup-plugin-dts';
 
-import pkg from './package.json' assert { type: 'json' };
+const require = createRequire(import.meta.url);
+type Package = Record<string, Record<string, string> | undefined>;
+const pkg = require('./package.json') as Package;
+
 import { packageName } from './src/util/packageName';
 
 const outputPath = `dist`;
@@ -21,8 +26,6 @@ const commonPlugins = [
 ];
 
 const commonAliases: Alias[] = [];
-
-type Package = Record<string, Record<string, string> | undefined>;
 
 const commonInputOptions: InputOptions = {
   input: 'src/index.ts',
