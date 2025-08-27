@@ -1,10 +1,12 @@
-<!-- TYPEDOC_EXCLUDE -->
-
-> [API Documentation](https://karmaniverous.github.io/npm-package-template-ts) • [CHANGELOG](https://github.com/karmaniverous/npm-package-template-ts/tree/main/CHANGELOG.md)
-
-<!-- /TYPEDOC_EXCLUDE -->
-
 # TypeScript NPM Package Template
+
+> _👇 Some of these badges only activate when you publish your package!_
+
+[![npm version](https://img.shields.io/npm/v/@karmaniverous/npm-package-template-ts.svg)](https://www.npmjs.com/package/@karmaniverous/npm-package-template-ts)
+![Node Current](https://img.shields.io/node/v/@karmaniverous/npm-package-template-ts) <!-- TYPEDOC_EXCLUDE -->
+[![docs](https://img.shields.io/badge/docs-website-blue)](https://docs.karmanivero.us/npm-package-template-ts)
+[![changelog](https://img.shields.io/badge/changelog-latest-blue.svg)](https://github.com/karmaniverous/npm-package-template-ts/tree/main/CHANGELOG.md)<!-- /TYPEDOC_EXCLUDE -->
+[![license](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](https://github.com/karmaniverous/npm-package-template-ts/tree/main/LICENSE.md)
 
 **Writing great TypeScript is only half the battle!** You also need to instrument it, format it, lint it, test it, bundle it, document it, and publish it!
 

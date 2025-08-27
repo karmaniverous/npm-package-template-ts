@@ -3,16 +3,23 @@
   "bin": {
     "mycli": "./dist/cli/mycli/index.js"
   },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "unreleased": true,
+    "commitLimit": false,
+    "hideCredit": true
+  },
   "bugs": {
     "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
   },
   "dependencies": {
+    "@karmaniverous/stan": "^0.1.0",
     "commander": "^14.0.0"
   },
   "description": "A feature-rich NPM package template for TypeScript projects.",
   "devDependencies": {
     "@commander-js/extra-typings": "^14.0.0",
-    "@dotenvx/dotenvx": "^1.48.4",
+    "@dotenvx/dotenvx": "^1.49.0",
     "@eslint/js": "^9.33.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.6",
@@ -40,7 +47,7 @@
     "prettier": "^3.6.2",
     "release-it": "^19.0.4",
     "rimraf": "^6.0.1",
-    "rollup": "^4.46.2",
+    "rollup": "^4.46.4",
     "rollup-plugin-dts": "^6.2.3",
     "tar": "^7.4.3",
     "tslib": "^2.8.1",
@@ -49,8 +56,11 @@
     "typedoc-plugin-mdn-links": "^5.0.8",
     "typedoc-plugin-replace-text": "^4.2.0",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.1",
+    "typescript-eslint": "^8.40.0",
     "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "exports": {
     ".": {
@@ -87,7 +97,7 @@
   },
   "release-it": {
     "git": {
-      "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased --template https://raw.githubusercontent.com/release-it/release-it/main/templates/changelog-compact.hbs",
+      "changelog": "npx auto-changelog --unreleased-only --stdout --template https://raw.githubusercontent.com/release-it/release-it/main/templates/changelog-compact.hbs",
       "commitMessage": "chore: release v${version}",
       "requireBranch": "main"
     },
@@ -122,18 +132,16 @@
   },
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "context": "concurrently -n archive,typecheck,lint,test,build -c auto \"npm:context:archive\" \"npm:context:typecheck\" \"npm:context:lint\" \"npm:context:test\" \"npm:context:build\"",
-    "context:archive": "tsx archive.ts",
-    "context:build": "npm run build > context/build.txt 2>&1",
-    "context:lint": "npm run lint > context/lint.txt 2>&1",
-    "context:test": "npm run test > context/test.txt 2>&1",
-    "context:typecheck": "npm run typecheck > context/typecheck.txt 2>&1",
+    "changelog": "auto-changelog",
     "docs": "typedoc",
     "knip": "knip",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "release": "dotenvx run -f .env.local -- release-it",
     "release:pre": "dotenvx run -f .env.local -- release-it --no-git.requireBranch --github.prerelease --preRelease",
+    "stan": "stan",
+    "stan:build": "rimraf stan.dist && rollup --config stan.rollup.config.ts --configPlugin @rollup/plugin-typescript && rimraf stan.dist",
+    "stan:docs": "typedoc --emit none",
     "test": "vitest --run --coverage",
     "typecheck": "tsc"
   },

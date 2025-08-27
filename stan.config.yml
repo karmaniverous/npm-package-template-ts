@@ -1,0 +1,11 @@
+stanPath: .stan
+includes: []
+excludes: []
+scripts:
+  typecheck: npm run typecheck
+  lint: npm run lint
+  test: npm run test
+  docs: npm run stan:docs
+  build: npm run stan:build
+  knip: npm run knip
+patchOpenCommand: code -g {file}

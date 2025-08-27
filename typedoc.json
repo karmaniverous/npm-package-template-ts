@@ -14,6 +14,9 @@
     "typescript"
   ],
   "hostedBaseUrl": "https://docs.karmanivero.us/npm-package-template-ts",
+  "navigationLinks": {
+    "GitHub": "https://github.com/karmaniverous/npm-package-template-ts"
+  },
   "out": "./docs/",
   "plugin": ["typedoc-plugin-mdn-links", "typedoc-plugin-replace-text"],
   "projectDocuments": ["./CHANGELOG.md"],
@@ -27,6 +30,5 @@
     ]
   },
   "searchInComments": true,
-  "searchInDocuments": true,
-  "titleLink": "https://github.com/karmaniverous/npm-package-template-ts"
+  "searchInDocuments": true
 }
