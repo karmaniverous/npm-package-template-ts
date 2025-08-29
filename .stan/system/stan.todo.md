@@ -1,18 +1,23 @@
 # Development Plan (stan.todo.md)
-When updated: 2025-08-29T00:00:00Z
+
+When updated: 2025-08-29T00:15:00Z
 
 ## Next up
-- Run `npm run diagrams:png` and confirm PNGs in `diagrams/out`
-  (watch verbose output for any include errors).
-- In VS Code, open `diagrams/src/hello-world.pu` and verify the
-  PlantUML extension renders using the updated v20.0 AWS icons.
+
+- Re-run `npm run diagrams` (or `npm run diagrams:png`) and confirm
+  no 404s from awslabs v20.0 (we trimmed includes to AWSCommon +
+  AWSSimplified and added lightweight group macros).
+- Investigate `npm run stan:build` failure (missing
+  `stan.rollup.config.ts`). Either add the config file or adjust
+  `stan.config.yml` to skip `build` in the STAN loop until present.
 
 ## Completed (recent)
-- Upgraded AWS icons include to v20.0 and switched to `!includeurl`
-  in `diagrams/aws.pu`.
-- Replaced `diagrams/src/api-offer.pu` with
-  `diagrams/src/hello-world.pu` to smoke test awslabs content via
-  our shared `aws.pu` defaults.
-- Added `diagrams:png` npm script to render all diagrams as PNGs
-  with verbose logging, and registered `diagrams` in `stan.config.yml`
-  so STAN can run it during troubleshooting.
+
+- Fixed PlantUML 404 (General/all.puml on v20.0) by simplifying
+  `diagrams/aws.pu` to include only AWSCommon/AWSSimplified and
+  adding lightweight group fallback macros.
+- Updated `diagrams/src/hello-world.pu` to rely only on `aws.pu`.
+- Added a `diagrams` npm script alias (same as `diagrams:png`) to
+  render PNGs verbosely for troubleshooting.
+- Registered `diagrams` in `stan.config.yml` previously; leave in
+  place for the STAN loop.

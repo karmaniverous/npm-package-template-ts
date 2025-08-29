@@ -1,25 +1,16 @@
-/'
-******************* DO NOT EDIT THIS NOTICE *****************
-This code and all related intellectual property is owned by  
-Veteran Crowd Rewards, LLC. It is not to be disclosed, copied
-or used without written permission.                          
-*************************************************************
-'/
-
 @startuml AWS
 
 !define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v20.0/dist
 !includeurl AWSPuml/AWSCommon.puml
-!includeurl AWSPuml/ApplicationIntegration/all.puml
-!includeurl AWSPuml/BusinessApplications/all.puml
-!includeurl AWSPuml/Compute/all.puml
-!includeurl AWSPuml/Database/all.puml
-!includeurl AWSPuml/General/all.puml
-!includeurl AWSPuml/GroupIcons/all.puml
-!includeurl AWSPuml/Groups/all.puml
-!includeurl AWSPuml/Storage/all.puml
+!includeurl AWSPuml/AWSSimplified.puml
+
+' Minimal fallbacks so group helpers work without category bundles.
+' Draws a simple rectangle; ignores icon/style parameters.
+!define AWSGroupEntity(g_alias, g_label, _color, _symbol, _groupColoring) rectangle g_label as g_alias
+!define AWSGroupColoring(_name, _bg, _border, _style)
 
 !define AWS_COLOR_BLACK #000000
+
 !define COLOR_BG_GREY #F2F2F2
 !define COLOR_BG_YELLOW #FDFCDC
 !define COLOR_BG_GREEN #E5FFDE

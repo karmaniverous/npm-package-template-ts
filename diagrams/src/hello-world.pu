@@ -1,7 +1,6 @@
 @startuml hello-world
 
 !include ../aws.pu
-!includeurl AWSPuml/AWSSimplified.puml
 
 title AWS Icons Hello World
 
@@ -12,4 +11,3 @@ AWSCloudGroup(aws, "AWS Cloud") {
 }
 
 @enduml
-
