@@ -15,6 +15,7 @@ export default tseslint.config(
   {
     ignores: [
       '.rollup.cache/**/*',
+      '.stan/**/*',
       'coverage/**/*',
       'dist/**/*',
       'docs/**/*',
@@ -22,8 +23,7 @@ export default tseslint.config(
     ],
   },
   eslint.configs.recommended,
-  tseslint.configs.strictTypeChecked,
-  prettierConfig,
+  tseslint.configs.strictTypeChecked,  prettierConfig,
   {
     ...vitestPlugin.configs.recommended,
     files: ['**/*.test.ts'],

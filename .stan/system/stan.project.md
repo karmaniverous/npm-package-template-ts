@@ -1,9 +1,8 @@
 # Project Requirements (npm-package-template-ts)
 
-When updated: 2025-08-29T00:00:00Z
+When updated: 2025-08-29T18:15:00Z
 
 Bundling (Rollup)
-
 - Library outputs:
   - ESM at dist/mjs/index.js
   - CJS at dist/cjs/index.js
@@ -28,6 +27,7 @@ ESLint
 - Use a TypeScript flat config at eslint.config.ts.
 - Lint uses @typescript-eslint strictTypeChecked config, Prettier alignment,
   simple-import-sort, and tsdoc syntax checks.
+- Exclude STAN dev build artifacts from lint: ignore ".stan/**/*".
 
 TypeScript configs
 
