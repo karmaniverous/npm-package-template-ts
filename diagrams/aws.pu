@@ -20,10 +20,10 @@
 
 ' AWS Cloud Group
 AWSGroupColoring(AWSCloudGroup, COLOR_BG_GREY, #000000, plain)
+!define AWSCloudGroup(g_alias, g_label="AWS Cloud") AWSGroupEntity(g_alias, g_label, AWS_COLOR_BLACK, Cloud, AWSCloudGroupColoring)
 
 ' API Gateway Group
-AWSGroupColoring(APIGatewayGroupColoring, COLOR_BG_PURPLE, AWS_COLOR_PINK, plain)
-!define APIGatewayGroup(g_alias, g_label="API Gateway") AWSGroupEntity(g_alias, g_label, AWS_COLOR_PINK, APIGateway, APIGatewayGroupColoring)
+AWSGroupColoring(APIGatewayGroupColoring, COLOR_BG_PURPLE, AWS_COLOR_PINK, plain)!define APIGatewayGroup(g_alias, g_label="API Gateway") AWSGroupEntity(g_alias, g_label, AWS_COLOR_PINK, APIGateway, APIGatewayGroupColoring)
 
 ' API Gateway Endpoint Group
 AWSGroupColoring(APIGatewayEndpointGroupColoring, COLOR_BG_PURPLE, AWS_COLOR_PINK, dashed)
