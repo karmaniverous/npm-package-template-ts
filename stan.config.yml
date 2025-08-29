@@ -15,4 +15,3 @@ scripts:
   build: npm run stan:build
   knip: npm run knip
 stanPath: .stan
-

@@ -1,12 +1,13 @@
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import eslint from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 import tsDocPlugin from 'eslint-plugin-tsdoc';
 import vitestPlugin from 'eslint-plugin-vitest';
-import { dirname } from 'path';
 import tseslint from 'typescript-eslint';
-import { fileURLToPath } from 'url';
 
 const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
 
@@ -35,7 +36,8 @@ export default tseslint.config(
       },
     },
     plugins: {
-      prettierPlugin,
+      // expose plugins under conventional keys
+      prettier: prettierPlugin,
       'simple-import-sort': simpleImportSortPlugin,
       tsdoc: tsDocPlugin,
     },

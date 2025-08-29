@@ -27,6 +27,10 @@ const commonPlugins = [
 
 const commonAliases: Alias[] = [];
 
+/**
+ * Common input options for library builds (ESM + CJS).
+ * Externalize runtime dependencies and peers.
+ */
 const commonInputOptions: InputOptions = {
   input: 'src/index.ts',
   external: [
@@ -41,31 +45,45 @@ const iifeCommonOutputOptions: OutputOptions = {
   name: packageName ?? 'unknown',
 };
 
-const cliCommands = await fs.readdir('src/cli');
+/** Discover CLI commands under src/cli. */
+const cliCommands = await fs.readdir('src/cli').catch(() => []) as string[];
 
+/**
+ * Build the library (ESM + CJS). This signature is consumed by stan.rollup.config.ts.
+ */
+export const buildLibrary = (dest: string): RollupOptions => ({
+  ...commonInputOptions,
+  output: [
+    {
+      dir: `${dest}/mjs`,
+      extend: true,
+      format: 'esm',
+    },
+    {
+      dir: `${dest}/cjs`,
+      extend: true,
+      format: 'cjs',
+    },
+  ],
+});
+
+/**
+ * Build bundled .d.ts at dest/index.d.ts. This signature is consumed by stan.rollup.config.ts.
+ */
+export const buildTypes = (dest: string): RollupOptions => ({
+  input: 'src/index.ts',
+  output: [{ file: `${dest}/index.d.ts`, format: 'esm' }],
+  plugins: [dtsPlugin()],
+});
+
+/** Assemble complete config including IIFE and CLI outputs. */
 const config: RollupOptions[] = [
-  // ESM output.
-  {
-    ...commonInputOptions,
-    output: [
-      {
-        dir: `${outputPath}/mjs`,
-        extend: true,
-        format: 'esm',
-        preserveModules: true,
-      },
-    ],
-  },
+  // Library output (ESM + CJS)
+  buildLibrary(outputPath),
 
-  // IIFE output.
+  // IIFE output (and minified IIFE)
   {
     ...commonInputOptions,
-    plugins: [
-      aliasPlugin({
-        entries: commonAliases,
-      }),
-      commonPlugins,
-    ],
     output: [
       {
         ...iifeCommonOutputOptions,
@@ -73,8 +91,6 @@ const config: RollupOptions[] = [
         file: `${outputPath}/index.iife.js`,
         format: 'iife',
       },
-
-      // Minified IIFE output.
       {
         ...iifeCommonOutputOptions,
         extend: true,
@@ -85,31 +101,8 @@ const config: RollupOptions[] = [
     ],
   },
 
-  // CommonJS output.
-  {
-    ...commonInputOptions,
-    output: [
-      {
-        dir: `${outputPath}/cjs`,
-        extend: true,
-        format: 'cjs',
-        preserveModules: true,
-      },
-    ],
-  },
-
-  // Type definitions output.
-  {
-    ...commonInputOptions,
-    plugins: [commonInputOptions.plugins, dtsPlugin()],
-    output: [
-      {
-        extend: true,
-        file: `${outputPath}/index.d.ts`,
-        format: 'esm',
-      },
-    ],
-  },
+  // Type definitions output (single .d.ts)
+  buildTypes(outputPath),
 
   // CLI output.
   ...cliCommands.map<RollupOptions>((c) => ({
@@ -120,6 +113,7 @@ const config: RollupOptions[] = [
         dir: `${outputPath}/cli/${c}`,
         extend: true,
         format: 'esm',
+        banner: '#!/usr/bin/env node',
       },
     ],
   })),
