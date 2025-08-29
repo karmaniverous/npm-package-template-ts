@@ -1,0 +1,199 @@
+@startuml api-offer
+
+!include ../aws.pu
+
+!include AWSPuml/AWSSimplified.puml
+
+left to right direction
+
+boundary getApiInterface as "Get API"
+
+WebAppGroup(webAppGetOffer) {
+    boundary webAppGetOfferInterface as "Get Offer"
+}
+
+WebAppGroup(webAppCreateOffer) {
+    boundary webAppCreateOfferInterface as "Create Offer"
+}
+
+WebAppGroup(webAppUpdateOffer) {
+    boundary webAppUpdateOfferInterface as "Update Offer"
+}
+
+WebAppGroup(webAppEnableOffer) {
+    boundary webAppEnableOfferInterface as "Enable Offer"
+}
+
+WebAppGroup(webAppArchiveOffer) {
+    boundary webAppArchiveOfferInterface as "Archive Offer"
+}
+
+WebAppGroup(webAppListOffers) {
+    boundary webAppListOffersInterface as "List Offers"
+}
+
+AWSCloudGroup(apiNetworkVisa, "api-network-visa") {
+    StepFunction(stepNetworkVisaMessagePost, "message-post", "")
+}
+
+AWSCloudGroup(apiOfferService, "api-offer") {
+    APIGatewayGroup(apiOfferGateway, "api-offer") {
+        APIGatewayEndpointGroup(apiDocOpenapiGet, "doc-openapi-get") {
+            APIGatewayEndpoint(endpointPublicDocOpenapiGet, "public\nendpoint", "")
+            getApiInterface --> endpointPublicDocOpenapiGet
+        }
+
+        APIGatewayEndpointGroup(apiDocPostmanGet, "doc-postman-get") {
+            APIGatewayEndpoint(endpointPublicDocPostmanGet, "public\nendpoint", "")
+            getApiInterface --> endpointPublicDocPostmanGet
+        }
+
+        APIGatewayEndpointGroup(apiOfferGet, "offer-get") {
+            APIGatewayEndpoint(endpointPublicOfferGet, "public\nendpoint", "")
+            APIGatewayEndpoint(endpointCognitoOfferGet, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateOfferGet, "private\nendpoint", "")
+            webAppGetOfferInterface --> endpointPublicOfferGet
+            webAppGetOfferInterface --> endpointCognitoOfferGet
+        }
+
+        APIGatewayEndpointGroup(apiOfferPost, "offer-post") {
+            APIGatewayEndpoint(endpointCognitoOfferPost, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateOfferPost, "private\nendpoint", "")
+            webAppCreateOfferInterface --> endpointCognitoOfferPost
+        }
+
+        APIGatewayEndpointGroup(apiOfferPatch, "offer-patch") {
+            APIGatewayEndpoint(endpointCognitoOfferPatch, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateOfferPatch, "private\nendpoint", "")
+            webAppUpdateOfferInterface --> endpointCognitoOfferPatch
+        }
+
+        APIGatewayEndpointGroup(apiOfferEnablePatch, "offer-enable-patch") {
+            APIGatewayEndpoint(endpointCognitoOfferEnablePatch, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateOfferEnablePatch, "private\nendpoint", "")
+            webAppEnableOfferInterface --> endpointCognitoOfferEnablePatch
+        }
+
+        APIGatewayEndpointGroup(apiOfferArchivePatch, "offer-archive-patch") {
+            APIGatewayEndpoint(endpointCognitoOfferArchivePatch, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateOfferArchivePatch, "private\nendpoint", "")
+            webAppArchiveOfferInterface --> endpointCognitoOfferArchivePatch
+        }
+
+        APIGatewayEndpointGroup(apiOffersGet, "offers-get") {
+            APIGatewayEndpoint(endpointPublicOffersGet, "public\nendpoint", "")
+            APIGatewayEndpoint(endpointCognitoOffersGet, "cognito\nendpoint", "")
+            APIGatewayEndpoint(endpointPrivateOffersGet, "private\nendpoint", "")
+            webAppListOffersInterface --> endpointPublicOffersGet
+            webAppListOffersInterface --> endpointCognitoOffersGet
+            stepNetworkVisaMessagePost --> endpointPrivateOffersGet
+        }
+    }
+
+   ' doc-get handlers
+    LambdaLambdaFunction(lambdaPublicDocOpenapiGet, "doc get openapi\npublic handler", "")
+    endpointPublicDocOpenapiGet --> lambdaPublicDocOpenapiGet
+
+    LambdaLambdaFunction(lambdaPublicDocPostmanGet, "doc get postman\npublic handler", "")
+    endpointPublicDocPostmanGet --> lambdaPublicDocPostmanGet
+
+    ' offer-get handlers
+    LambdaLambdaFunction(lambdaPublicOfferGet, "offer get\npublic handler", "")
+    endpointPublicOfferGet --> lambdaPublicOfferGet
+
+    LambdaLambdaFunction(lambdaCognitoOfferGet, "offer get\ncognito handler", "")
+    endpointCognitoOfferGet --> lambdaCognitoOfferGet
+
+    LambdaLambdaFunction(lambdaPrivateOfferGet, "offer get\nprivate handler", "")
+    endpointPrivateOfferGet --> lambdaPrivateOfferGet
+
+    interface lambdaOfferGetInterface as " "
+    lambdaPublicOfferGet --> lambdaOfferGetInterface
+    lambdaCognitoOfferGet --> lambdaOfferGetInterface
+    lambdaPrivateOfferGet --> lambdaOfferGetInterface
+
+    ' offer-post handlers
+    LambdaLambdaFunction(lambdaCognitoOfferPost, "offer post\ncognito handler", "")
+    endpointCognitoOfferPost --> lambdaCognitoOfferPost
+
+    LambdaLambdaFunction(lambdaPrivateOfferPost, "offer post\nprivate handler", "")
+    endpointPrivateOfferPost --> lambdaPrivateOfferPost
+
+    interface lambdaOfferPostInterface as " "
+    lambdaCognitoOfferPost --> lambdaOfferPostInterface
+    lambdaPrivateOfferPost --> lambdaOfferPostInterface
+
+    ' offer-patch handlers
+    LambdaLambdaFunction(lambdaCognitoOfferPatch, "offer patch\ncognito handler", "")
+    endpointCognitoOfferPatch --> lambdaCognitoOfferPatch
+
+    LambdaLambdaFunction(lambdaPrivateOfferPatch, "offer patch\nprivate handler", "")
+    endpointPrivateOfferPatch --> lambdaPrivateOfferPatch
+
+    interface lambdaOfferPatchInterface as " "
+    lambdaCognitoOfferPatch --> lambdaOfferPatchInterface
+    lambdaPrivateOfferPatch --> lambdaOfferPatchInterface
+
+    ' offer-enable-patch handlers
+    LambdaLambdaFunction(lambdaCognitoOfferEnablePatch, "offer enable patch\ncognito handler", "")
+    endpointCognitoOfferEnablePatch --> lambdaCognitoOfferEnablePatch
+
+    LambdaLambdaFunction(lambdaPrivateOfferEnablePatch, "offer enable patch\nprivate handler", "")
+    endpointPrivateOfferEnablePatch --> lambdaPrivateOfferEnablePatch
+
+    interface lambdaOfferEnablePatchInterface as " "
+    lambdaCognitoOfferEnablePatch --> lambdaOfferEnablePatchInterface
+    lambdaPrivateOfferEnablePatch --> lambdaOfferEnablePatchInterface
+
+    ' offer-archive-patch handlers
+    LambdaLambdaFunction(lambdaCognitoOfferArchivePatch, "offer archive patch\ncognito handler", "")
+    endpointCognitoOfferArchivePatch --> lambdaCognitoOfferArchivePatch
+
+    LambdaLambdaFunction(lambdaPrivateOfferArchivePatch, "offer archive patch\nprivate handler", "")
+    endpointPrivateOfferArchivePatch --> lambdaPrivateOfferArchivePatch
+
+    interface lambdaOfferArchivePatchInterface as " "
+    lambdaCognitoOfferArchivePatch --> lambdaOfferArchivePatchInterface
+    lambdaPrivateOfferArchivePatch --> lambdaOfferArchivePatchInterface
+
+    ' offers-get handlers
+    LambdaLambdaFunction(lambdaPublicOffersGet, "offers get\npublic handler", "")
+    endpointPublicOffersGet --> lambdaPublicOffersGet
+
+    LambdaLambdaFunction(lambdaCognitoOffersGet, "offers get\ncognito handler", "")
+    endpointCognitoOffersGet --> lambdaCognitoOffersGet
+
+    LambdaLambdaFunction(lambdaPrivateOffersGet, "offers get\nprivate handler", "")
+    endpointPrivateOffersGet --> lambdaPrivateOffersGet
+
+    interface lambdaOffersGetInterface as " "
+    lambdaPublicOffersGet --> lambdaOffersGetInterface
+    lambdaCognitoOffersGet --> lambdaOffersGetInterface
+    lambdaPrivateOffersGet --> lambdaOffersGetInterface
+
+    ' database
+    DynamoDBTable(entityOffer, "offer\nentity", "")
+    lambdaOfferGetInterface --> entityOffer
+    lambdaOfferPostInterface --> entityOffer
+    lambdaOfferPatchInterface --> entityOffer
+    lambdaOfferEnablePatchInterface --> entityOffer
+    lambdaOfferArchivePatchInterface --> entityOffer
+    lambdaOffersGetInterface --> entityOffer
+
+    DynamoDBStream(streamCrud, "crud\nstream", "")
+    entityOffer --> streamCrud
+
+    LambdaLambdaFunction(lambdaCrud, "crud\n handler", "")
+    streamCrud --> lambdaCrud
+}
+
+AWSCloudGroup(apiMessageService, "api-message") {
+    APIGatewayGroup(apiMessageGateway, "api-message") {
+        APIGatewayEndpointGroup(apiMessagePost, "message-post") {
+            APIGatewayEndpoint(endpointPrivateMessagePost, "private\nendpoint", "")
+            lambdaCrud --> endpointPrivateMessagePost
+        }
+    }
+}
+
+@enduml

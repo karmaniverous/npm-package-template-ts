@@ -1,0 +1,54 @@
+/'
+******************* DO NOT EDIT THIS NOTICE *****************
+This code and all related intellectual property is owned by  
+Veteran Crowd Rewards, LLC. It is not to be disclosed, copied
+or used without written permission.                          
+*************************************************************
+'/
+
+@startuml AWS
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v15.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ApplicationIntegration/all.puml
+!include AWSPuml/BusinessApplications/all.puml
+!include AWSPuml/Compute/all.puml
+!include AWSPuml/Database/all.puml
+!include AWSPuml/General/all.puml
+!include AWSPuml/GroupIcons/all.puml
+!include AWSPuml/Groups/all.puml
+!include AWSPuml/Storage/all.puml
+
+!define AWS_COLOR_BLACK #000000
+
+!define COLOR_BG_GREY #F2F2F2
+!define COLOR_BG_YELLOW #FDFCDC
+!define COLOR_BG_GREEN #E5FFDE
+!define COLOR_BG_PURPLE #F7F0F5
+!define COLOR_BG_RED #FFEAEE
+!define COLOR_BG_BLUE #E0FBFC
+
+' AWS Cloud Group
+AWSGroupColoring(AWSCloudGroup, COLOR_BG_GREY, #000000, plain)
+
+' API Gateway Group
+AWSGroupColoring(APIGatewayGroupColoring, COLOR_BG_PURPLE, AWS_COLOR_PINK, plain)
+!define APIGatewayGroup(g_alias, g_label="API Gateway") AWSGroupEntity(g_alias, g_label, AWS_COLOR_PINK, APIGateway, APIGatewayGroupColoring)
+
+' API Gateway Endpoint Group
+AWSGroupColoring(APIGatewayEndpointGroupColoring, COLOR_BG_PURPLE, AWS_COLOR_PINK, dashed)
+!define APIGatewayEndpointGroup(g_alias, g_label="Endpoint") AWSGroupEntity(g_alias, g_label, AWS_COLOR_PINK, APIGatewayEndpointGroupColoring)
+
+' DynamoDB Group
+AWSGroupColoring(DynamoDBGroupColoring, COLOR_BG_BLUE, AWS_COLOR_BLUE, plain)
+!define DynamoDBGroup(g_alias, g_label="DynamoDB") AWSGroupEntity(g_alias, g_label, AWS_COLOR_BLUE, DynamoDB, DynamoDBGroupColoring)
+
+' Step Function Group
+AWSGroupColoring(StepFunctionGroupColoring, COLOR_BG_RED, AWS_COLOR_PINK, plain)
+!define StepFunctionGroup(g_alias, g_label="Step Functions") AWSGroupEntity(g_alias, g_label, AWS_COLOR_PINK, StepFunctions, StepFunctionGroupColoring)
+
+' Web App Group
+AWSGroupColoring(WebAppGroupColoring, COLOR_BG_GREY, AWS_COLOR_BLACK, plain)
+!define WebAppGroup(g_alias, g_label="web-app") AWSGroupEntity(g_alias, g_label, AWS_COLOR_BLACK, Cloud, WebAppGroupColoring)
+
+@enduml
