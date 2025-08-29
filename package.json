@@ -133,6 +133,7 @@
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "changelog": "auto-changelog",
+    "diagrams": "cd diagrams/src && plantuml -v -tpng -o ../out -r .",
     "docs": "typedoc",
     "knip": "knip",
     "lint": "eslint .",

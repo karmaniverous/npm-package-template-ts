@@ -1,11 +1,14 @@
 stanPath: .stan
 includes: []
-excludes: []
+excludes:
+  - package-lock.json
 scripts:
   typecheck: npm run typecheck
   lint: npm run lint
   test: npm run test
+  diagrams: npm run diagrams
   docs: npm run stan:docs
   build: npm run stan:build
   knip: npm run knip
 patchOpenCommand: code -g {file}
+

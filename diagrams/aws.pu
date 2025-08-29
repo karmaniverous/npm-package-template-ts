@@ -8,19 +8,18 @@ or used without written permission.
 
 @startuml AWS
 
-!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v15.0/dist
-!include AWSPuml/AWSCommon.puml
-!include AWSPuml/ApplicationIntegration/all.puml
-!include AWSPuml/BusinessApplications/all.puml
-!include AWSPuml/Compute/all.puml
-!include AWSPuml/Database/all.puml
-!include AWSPuml/General/all.puml
-!include AWSPuml/GroupIcons/all.puml
-!include AWSPuml/Groups/all.puml
-!include AWSPuml/Storage/all.puml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v20.0/dist
+!includeurl AWSPuml/AWSCommon.puml
+!includeurl AWSPuml/ApplicationIntegration/all.puml
+!includeurl AWSPuml/BusinessApplications/all.puml
+!includeurl AWSPuml/Compute/all.puml
+!includeurl AWSPuml/Database/all.puml
+!includeurl AWSPuml/General/all.puml
+!includeurl AWSPuml/GroupIcons/all.puml
+!includeurl AWSPuml/Groups/all.puml
+!includeurl AWSPuml/Storage/all.puml
 
 !define AWS_COLOR_BLACK #000000
-
 !define COLOR_BG_GREY #F2F2F2
 !define COLOR_BG_YELLOW #FDFCDC
 !define COLOR_BG_GREEN #E5FFDE
