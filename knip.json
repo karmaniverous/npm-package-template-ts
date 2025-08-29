@@ -1,6 +1,5 @@
 {
   "entry": ["src/**/index.ts"],
-  "ignoreDependencies": ["auto-changelog"],
   "project": ["*/**", "!docs/**"],
   "rules": {
     "exports": "off",
@@ -8,5 +7,6 @@
   },
   "vitest": {
     "entry": ["*/**/*.test.!(*.*)"]
-  }
+  },
+  "binaries": ["plantuml"]
 }
