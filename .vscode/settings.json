@@ -22,7 +22,6 @@
   "plantuml.exportIncludeFolderHeirarchy": true,
   "plantuml.exportOutDir": "diagrams/out",
   "plantuml.exportSubFolder": false,
-  "plantuml.jarArgs": ["-v"],
   "plantuml.render": "Local",
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.singleQuote": true,

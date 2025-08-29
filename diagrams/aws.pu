@@ -1,9 +1,10 @@
-@startuml AWS
+@startuml Hello World
+' Uncomment the line below for "dark mode" styling
+'!$AWS_DARK = true
 
-!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v20.0/dist
-!includeurl AWSPuml/AWSCommon.puml
-
-' Minimal helper used by hello-world.pu
-!define AWSCloudGroup(g_alias, g_label="AWS Cloud") rectangle g_label as g_alias
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v18.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/BusinessApplications/all.puml
+!include AWSPuml/Storage/SimpleStorageService.puml
 
 @enduml

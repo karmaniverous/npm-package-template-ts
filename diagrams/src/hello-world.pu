@@ -2,12 +2,11 @@
 
 !include ../aws.pu
 
-title AWS Icons Hello World
+actor "Person" as personAlias
+WorkDocs(desktopAlias, "Label", "Technology", "Optional Description")
+SimpleStorageService(storageAlias, "Label", "Technology", "Optional Description")
 
-AWSCloudGroup(aws, "AWS Cloud") {
-  note as hello
-  Hello, AWS Icons!
-  end note
-}
+personAlias --> desktopAlias
+desktopAlias --> storageAlias
 
 @enduml
