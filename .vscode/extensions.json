@@ -2,10 +2,10 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "vitest.explorer",
+    "github.vscode-github-actions",
+    "gruntfuggly.todo-tree",
     "jebbs.plantuml",
     "redhat.vscode-yaml",
-    "gruntfuggly.todo-tree",
-    "github.vscode-github-actions"
+    "vitest.explorer"
   ]
 }

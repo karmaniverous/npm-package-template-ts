@@ -16,14 +16,17 @@ export default tseslint.config(
     ignores: [
       '.rollup.cache/**/*',
       '.stan/**/*',
+      'assets/**/*',
       'coverage/**/*',
+      'diagrams/out/**/*',
       'dist/**/*',
       'docs/**/*',
       'node_modules/**/*',
     ],
   },
   eslint.configs.recommended,
-  tseslint.configs.strictTypeChecked,  prettierConfig,
+  tseslint.configs.strictTypeChecked,
+  prettierConfig,
   {
     ...vitestPlugin.configs.recommended,
     files: ['**/*.test.ts'],

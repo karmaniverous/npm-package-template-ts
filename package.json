@@ -13,7 +13,6 @@
     "url": "https://github.com/karmaniverous/npm-package-template-ts/issues"
   },
   "dependencies": {
-    "@karmaniverous/stan": "^0.1.0",
     "commander": "^14.0.0"
   },
   "description": "A feature-rich NPM package template for TypeScript projects.",
@@ -135,7 +134,6 @@
     "lint:fix": "eslint --fix .",
     "release": "dotenvx run -f .env.local -- release-it",
     "release:pre": "dotenvx run -f .env.local -- release-it --no-git.requireBranch --github.prerelease --preRelease",
-    "stan": "stan",
     "stan:build": "rimraf stan.dist && rollup --config stan.rollup.config.ts --configPlugin @rollup/plugin-typescript && rimraf stan.dist",
     "stan:docs": "typedoc --emit none",
     "test": "vitest --run --coverage",
