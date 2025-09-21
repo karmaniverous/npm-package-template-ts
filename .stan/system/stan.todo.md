@@ -1,6 +1,6 @@
 # Development Plan (stan.todo.md)
 
-When updated: 2025-09-21T17:55:00Z
+When updated: 2025-09-21T18:05:00Z
 
 ## Next up
 - Run `npm i`; verify no ESLint peer/override warnings. Run `npm run lint`
@@ -12,21 +12,22 @@ When updated: 2025-09-21T17:55:00Z
 
 ## Completed (recent)
 
+- Fixed ESLint types and narrowed config-only warnings: use `ESLint.Plugin`
+  (ESLint v9) and add targeted `no-unsafe-assignment` disables for plugin/rules
+  assertions in eslint.config.ts.
 - Fixed ESLint config typing/deprecation: cast Vitest plugin to `Linter.Plugin`
   and switched `satisfies` to `Linter.Config[]`.
-- Fixed ESLint config typing/import order:
-  - Cast `@vitest/eslint-plugin` to `Linter.Plugin`.
+- Fixed ESLint config typing/import order:  - Cast `@vitest/eslint-plugin` to `Linter.Plugin`.
   - Replaced `Linter.FlatConfig[]` with `Linter.Config[]`.
   - Sorted imports to satisfy simple-import-sort.- Replaced deprecated `eslint-plugin-vitest` with `@vitest/eslint-plugin`.
   Updated `eslint.config.ts` to a flat array (no `defineConfig`), extracted
   `strictTypeChecked` rules, and applied Vitest rules only to test files.  Fixed TS2305/TS2488 and “recommended is not iterable” errors.
 - Pruned unused devDependencies (@types/eslint__js, @types/eslint-config-prettier,
   concurrently, tar, tsx).
-- Updated knip.json: removed ignoreDependencies for auto-changelog; added  binaries ["plantuml"] to silence unlisted binary warning.
+- Updated knip.json: removed ignoreDependencies for auto-changelog; added binaries ["plantuml"] to silence unlisted binary warning.
 - Rewrote README to document STAN integration and align with the current
   bundling and CLI outputs.
-- Refactored rollup.config.ts to export buildLibrary/buildTypes consumed by  stan.rollup.config.ts; retained IIFE and CLI outputs; fixed DTS plugin usage.
-- Converted ESLint flat config from JS to TypeScript (eslint.config.ts) and
+- Refactored rollup.config.ts to export buildLibrary/buildTypes consumed by  stan.rollup.config.ts; retained IIFE and CLI outputs; fixed DTS plugin usage.- Converted ESLint flat config from JS to TypeScript (eslint.config.ts) and
   removed eslint.config.js.
 - Pinned awslabs/aws-icons-for-plantuml to v18.0 in `diagrams/aws.pu`
   to match the Chocolatey PlantUML version and ensure reliable renders.
