@@ -46,10 +46,10 @@ const iifeCommonOutputOptions: OutputOptions = {
 };
 
 /** Discover CLI commands under src/cli. */
-const cliCommands = await fs.readdir('src/cli').catch(() => []) as string[];
+const cliCommands = (await fs.readdir('src/cli').catch(() => [])) as string[];
 
 /**
- * Build the library (ESM + CJS). This signature is consumed by stan.rollup.config.ts.
+ * Build the library (ESM + CJS).
  */
 export const buildLibrary = (dest: string): RollupOptions => ({
   ...commonInputOptions,
@@ -68,7 +68,7 @@ export const buildLibrary = (dest: string): RollupOptions => ({
 });
 
 /**
- * Build bundled .d.ts at dest/index.d.ts. This signature is consumed by stan.rollup.config.ts.
+ * Build bundled .d.ts at dest/index.d.ts.
  */
 export const buildTypes = (dest: string): RollupOptions => ({
   input: 'src/index.ts',
