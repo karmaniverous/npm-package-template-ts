@@ -1,17 +1,18 @@
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { defineConfig } from 'eslint';
 import eslint from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 import tsDocPlugin from 'eslint-plugin-tsdoc';
-import vitestPlugin from 'eslint-plugin-vitest';
+import vitest from '@vitest/eslint-plugin';
 import tseslint from 'typescript-eslint';
 
 const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
 
-export default tseslint.config(
+export default defineConfig([
   {
     ignores: [
       '.rollup.cache/**/*',
@@ -25,12 +26,9 @@ export default tseslint.config(
     ],
   },
   eslint.configs.recommended,
-  tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
   prettierConfig,
-  {
-    ...vitestPlugin.configs.recommended,
-    files: ['**/*.test.ts'],
-  },
+  ...vitest.configs.recommended,
   {
     languageOptions: {
       parserOptions: {
@@ -55,4 +53,4 @@ export default tseslint.config(
       'tsdoc/syntax': 'warn',
     },
   },
-);
+]);
