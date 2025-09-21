@@ -1,18 +1,38 @@
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { defineConfig } from 'eslint';
 import eslint from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
-import tsDocPlugin from 'eslint-plugin-tsdoc';
-import vitest from '@vitest/eslint-plugin';
+import tsdocPlugin from 'eslint-plugin-tsdoc';
+import vitestPlugin from '@vitest/eslint-plugin';
 import tseslint from 'typescript-eslint';
+import type { Linter } from 'eslint';
 
 const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig([
+// Extract strict type-checked rules into a single rules object.
+const strictConfigs = tseslint.configs
+  .strictTypeChecked as unknown as Array<unknown>;
+const strictTypeCheckedRules = strictConfigs.reduce<Record<string, unknown>>(
+  (acc, cfg) => {
+    const rules = (cfg as { rules?: Record<string, unknown> }).rules;
+    if (rules) Object.assign(acc, rules);
+    return acc;
+  },
+  {},
+);
+
+// Vitest recommended rules (flat config)
+const vitestRecommendedRules =
+  (
+    vitestPlugin as unknown as {
+      configs?: { recommended?: { rules?: Record<string, unknown> } };
+    }
+  ).configs?.recommended?.rules ?? {};
+
+export default [
   {
     ignores: [
       '.rollup.cache/**/*',
@@ -26,31 +46,50 @@ export default defineConfig([
     ],
   },
   eslint.configs.recommended,
-  ...tseslint.configs.strictTypeChecked,
-  prettierConfig,
-  ...vitest.configs.recommended,
   {
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
+      parser: tseslint.parser,
       parserOptions: {
         project: true,
         tsconfigRootDir,
       },
     },
     plugins: {
-      // expose plugins under conventional keys
+      '@typescript-eslint': tseslint.plugin,
       prettier: prettierPlugin,
       'simple-import-sort': simpleImportSortPlugin,
-      tsdoc: tsDocPlugin,
+      tsdoc: tsdocPlugin,
     },
     rules: {
+      ...strictTypeCheckedRules,
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
-      '@typescript-eslint/no-unused-vars': 'error',
       'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       'tsdoc/syntax': 'warn',
+      'prettier/prettier': 'error',
     },
   },
-]);
+  {
+    files: ['**/*.test.{ts,tsx}'],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        project: true,
+        tsconfigRootDir,
+      },
+    },
+    plugins: {
+      vitest: vitestPlugin,
+    },
+    rules: {
+      ...vitestRecommendedRules,
+      'prettier/prettier': 'error',
+    },
+  },
+  prettierConfig,
+] satisfies Linter.FlatConfig[];

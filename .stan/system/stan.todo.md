@@ -1,24 +1,24 @@
 # Development Plan (stan.todo.md)
 
-When updated: 2025-09-21T16:30:00Z
+When updated: 2025-09-21T16:55:00Z
 
 ## Next up
 
 - Run `npm i`; verify no ESLint peer/override warnings. Run `npm run lint`
-  and expect 0 errors (ensures defineConfig + new Vitest plugin work).
+  and expect 0 errors (ensures new Vitest plugin + typed TS/test blocks work).
 - Re-run `npm run knip`; expect a clean report.
 - Sanity-check README links and commands (bin mapping, CLI paths, STAN notes).
 - Confirm IIFE behavior in a simple browser page if needed.
 
 ## Completed (recent)
 
-- Replaced deprecated `eslint-plugin-vitest` with `@vitest/eslint-plugin` and
-  migrated `eslint.config.ts` to ESLint `defineConfig()` to resolve peer-dep
-  warnings and remove deprecation error.
+- Replaced deprecated `eslint-plugin-vitest` with `@vitest/eslint-plugin`.
+  Updated `eslint.config.ts` to a flat array (no `defineConfig`), extracted
+  `strictTypeChecked` rules, and applied Vitest rules only to test files.
+  Fixed TS2305/TS2488 and “recommended is not iterable” errors.
 - Pruned unused devDependencies (@types/eslint__js, @types/eslint-config-prettier,
   concurrently, tar, tsx).
-- Updated knip.json: removed ignoreDependencies for auto-changelog; added
-  binaries ["plantuml"] to silence unlisted binary warning.
+- Updated knip.json: removed ignoreDependencies for auto-changelog; added  binaries ["plantuml"] to silence unlisted binary warning.
 - Rewrote README to document STAN integration and align with the current
   bundling and CLI outputs.
 - Refactored rollup.config.ts to export buildLibrary/buildTypes consumed by  stan.rollup.config.ts; retained IIFE and CLI outputs; fixed DTS plugin usage.
