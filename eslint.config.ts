@@ -6,11 +6,11 @@ import vitestPlugin from '@vitest/eslint-plugin';
 import type { ESLint, Linter } from 'eslint';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
-import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';import tsdocPlugin from 'eslint-plugin-tsdoc';
+import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
+import tsdocPlugin from 'eslint-plugin-tsdoc';
 import tseslint from 'typescript-eslint';
 
 const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
-
 // Extract strict type-checked rules into a single rules object.
 const strictConfigs = tseslint.configs
   .strictTypeChecked as unknown as Array<unknown>;
@@ -24,11 +24,9 @@ const strictTypeCheckedRules = strictConfigs.reduce<Record<string, unknown>>(
 );
 
 // Cast Vitest plugin to ESLint's Plugin type to satisfy TS.
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const vitest = vitestPlugin as unknown as ESLint.Plugin;
 
 // Vitest recommended rules (flat config)
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const vitestRecommendedRules: Linter.RulesRecord =
   (
     vitestPlugin as unknown as {
@@ -37,7 +35,8 @@ const vitestRecommendedRules: Linter.RulesRecord =
   ).configs?.recommended?.rules ?? {};
 
 export default [
-  {    ignores: [
+  {
+    ignores: [
       '.rollup.cache/**/*',
       '.stan/**/*',
       'assets/**/*',
@@ -90,8 +89,9 @@ export default [
       vitest,
     },
     rules: {
-      ...vitestRecommendedRules,      'prettier/prettier': 'error',
+      ...vitestRecommendedRules,
+      'prettier/prettier': 'error',
     },
   },
   prettierConfig,
-] satisfies Linter.Config[];
+];

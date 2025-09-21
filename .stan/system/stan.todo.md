@@ -1,21 +1,22 @@
 # Development Plan (stan.todo.md)
 
-When updated: 2025-09-21T18:05:00Z
+When updated: 2025-09-21T18:20:00Z
 
 ## Next up
 - Run `npm i`; verify no ESLint peer/override warnings. Run `npm run lint`
-  and expect 0 errors (ensures new Vitest plugin + typed TS/test blocks work).
-- Run `npm run lint:fix` to normalize CRLF line endings flagged by Prettier.
+  and expect 0 errors (ensures new Vitest plugin + typed TS/test blocks work).- Run `npm run lint:fix` to normalize CRLF line endings flagged by Prettier.
 - Re-run `npm run knip`; expect a clean report.
 - Sanity-check README links and commands (bin mapping, CLI paths, STAN notes).
 - Confirm IIFE behavior in a simple browser page if needed.
 
 ## Completed (recent)
 
+- Cleaned up eslint.config.ts: split malformed import line, removed unused
+  eslint-disable comments, and normalized formatting in config/test blocks.
+  Import order and CRLF will be handled by `npm run lint:fix`.
 - Fixed ESLint types and narrowed config-only warnings: use `ESLint.Plugin`
   (ESLint v9) and add targeted `no-unsafe-assignment` disables for plugin/rules
-  assertions in eslint.config.ts.
-- Fixed ESLint config typing/deprecation: cast Vitest plugin to `Linter.Plugin`
+  assertions in eslint.config.ts.- Fixed ESLint config typing/deprecation: cast Vitest plugin to `Linter.Plugin`
   and switched `satisfies` to `Linter.Config[]`.
 - Fixed ESLint config typing/import order:  - Cast `@vitest/eslint-plugin` to `Linter.Plugin`.
   - Replaced `Linter.FlatConfig[]` with `Linter.Config[]`.
