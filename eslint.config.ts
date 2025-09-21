@@ -24,6 +24,9 @@ const strictTypeCheckedRules = strictConfigs.reduce<Record<string, unknown>>(
   {},
 );
 
+// Cast Vitest plugin to ESLint's Plugin type to satisfy TS.
+const vitest = vitestPlugin as unknown as Linter.Plugin;
+
 // Vitest recommended rules (flat config)
 const vitestRecommendedRules =
   (
@@ -84,7 +87,7 @@ export default [
       },
     },
     plugins: {
-      vitest: vitestPlugin,
+      vitest,
     },
     rules: {
       ...vitestRecommendedRules,
@@ -92,4 +95,4 @@ export default [
     },
   },
   prettierConfig,
-] satisfies Linter.FlatConfig[];
+] satisfies Linter.Config[];
