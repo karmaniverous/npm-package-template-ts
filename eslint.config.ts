@@ -2,13 +2,13 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import eslint from '@eslint/js';
+import vitestPlugin from '@vitest/eslint-plugin';
+import type { Linter } from 'eslint';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
-import vitestPlugin from '@vitest/eslint-plugin';
 import tseslint from 'typescript-eslint';
-import type { Linter } from 'eslint';
 
 const tsconfigRootDir = dirname(fileURLToPath(import.meta.url));
 

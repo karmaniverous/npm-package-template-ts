@@ -6,6 +6,9 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
   "eslint.useFlatConfig": true,
   "eslint.validate": [
     "javascript",
@@ -13,6 +16,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "files.eol": "\n",
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
