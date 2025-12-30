@@ -11,7 +11,9 @@
     "json5",
     "md",
     "tsx",
-    "typescript"
+    "typescript",
+    "yaml",
+    "yml"
   ],
   "hostedBaseUrl": "https://docs.karmanivero.us/npm-package-template-ts",
   "navigationLinks": {
@@ -30,5 +32,8 @@
     ]
   },
   "searchInComments": true,
-  "searchInDocuments": true
+  "searchInDocuments": true,
+  "validation": {
+    "notDocumented": true
+  }
 }

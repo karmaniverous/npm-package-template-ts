@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [v0.7.0](https://github.com/karmaniverous/npm-package-template-ts/compare/v2.0.6...v0.7.0)
+#### [Unreleased](https://github.com/karmaniverous/npm-package-template-ts/compare/v2.0.6...HEAD)
 
 - added context building & resolved build issues [`1f94963`](https://github.com/karmaniverous/npm-package-template-ts/commit/1f94963f119fa1ac16de10ad142068de9bb90bff)
 - switched to vitest [`81d441d`](https://github.com/karmaniverous/npm-package-template-ts/commit/81d441da5fc246bb7b2d07e20531fc25ae145188)
@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - chore: release v0.4.1 [`1a536c4`](https://github.com/karmaniverous/npm-package-template-ts/commit/1a536c49adfbe23b568391483bc3566fd758b6ca)
 - removed eslint version restriction [`89d52c8`](https://github.com/karmaniverous/npm-package-template-ts/commit/89d52c83270852984b23ee66e82f7b4651283eb9)
 - updated dependencies [`389adf9`](https://github.com/karmaniverous/npm-package-template-ts/commit/389adf9de4245fec32873a17cebb3421299c2482)
+- chore: release v0.7.0 [`9ea98e4`](https://github.com/karmaniverous/npm-package-template-ts/commit/9ea98e4a4ae0401d2b351e63096937b055dd1391)
 - chore: prune devDeps, update knip, rewrite README [`54d9c69`](https://github.com/karmaniverous/npm-package-template-ts/commit/54d9c69bf0752a0ff621104c2328138166f0a8da)
 - updated dependencies [`e8ac834`](https://github.com/karmaniverous/npm-package-template-ts/commit/e8ac83478e48cd10d3cc14ad06057bac9e1f6b05)
 - updated dependencies [`99c9c0c`](https://github.com/karmaniverous/npm-package-template-ts/commit/99c9c0c9353bcdb21c6dbe75be0bebdb54dd2ae6)
@@ -142,7 +143,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - updated .gitignore [`5644677`](https://github.com/karmaniverous/npm-package-template-ts/commit/564467754d8e35527fcb2bdb6a8c6a6692234982)
 - added missing ignores [`b64353c`](https://github.com/karmaniverous/npm-package-template-ts/commit/b64353c4a2d6b99dd21d26fbae98dacb26ffa8b6)
 
-### [v2.0.6](https://github.com/karmaniverous/npm-package-template-ts/compare/v0.6.13...v2.0.6)
+### [v2.0.6](https://github.com/karmaniverous/npm-package-template-ts/compare/v0.7.0...v2.0.6)
 
 > 9 June 2024
 
@@ -190,6 +191,43 @@ All notable changes to this project will be documented in this file. Dates are d
 - [GH-6] Merge branch 'main' into feature/gh-6-add-cli-support [`c0c7596`](https://github.com/karmaniverous/npm-package-template-ts/commit/c0c7596cdcd2fbb318e64ed436a9d309d22d90b9)
 - Merge pull request #8 from karmaniverous/bugfix/GH-7-iife-build-warnings [`0014028`](https://github.com/karmaniverous/npm-package-template-ts/commit/0014028b420c262a53346a29e83eec665b0a3f69)
 - added missing ignores [`42048e9`](https://github.com/karmaniverous/npm-package-template-ts/commit/42048e933ceb7ada992c813ffea9ed283c783f83)
+
+#### [v0.7.0](https://github.com/karmaniverous/npm-package-template-ts/compare/v0.6.13...v0.7.0)
+
+> 21 September 2025
+
+- added context building & resolved build issues [`1f94963`](https://github.com/karmaniverous/npm-package-template-ts/commit/1f94963f119fa1ac16de10ad142068de9bb90bff)
+- switched to vitest [`81d441d`](https://github.com/karmaniverous/npm-package-template-ts/commit/81d441da5fc246bb7b2d07e20531fc25ae145188)
+- updated docs [`4fbac31`](https://github.com/karmaniverous/npm-package-template-ts/commit/4fbac31aa95e1227a8b3bb2c3ef4acf804524f13)
+- updated dependencies [`aee6b2b`](https://github.com/karmaniverous/npm-package-template-ts/commit/aee6b2bf2fd18178bff54e754e4170ab36b3e110)
+- chore: release v0.7.0 [`9ea98e4`](https://github.com/karmaniverous/npm-package-template-ts/commit/9ea98e4a4ae0401d2b351e63096937b055dd1391)
+- chore: prune devDeps, update knip, rewrite README [`54d9c69`](https://github.com/karmaniverous/npm-package-template-ts/commit/54d9c69bf0752a0ff621104c2328138166f0a8da)
+- refactor: export rollup build funcs and move ESLint to TS [`12b8a07`](https://github.com/karmaniverous/npm-package-template-ts/commit/12b8a0759900a54ecdb78cb2f54a04d211c715f7)
+- docs & scripts updates [`aac219e`](https://github.com/karmaniverous/npm-package-template-ts/commit/aac219ef23bd74a6b56d4d4fdfb12e714dd2a905)
+- added base diagram support [`09caa5b`](https://github.com/karmaniverous/npm-package-template-ts/commit/09caa5bb62baa2694ed87ad74ac74d1e0f53c04d)
+- Upgrade AWS icons and add diagram render script [`daf699b`](https://github.com/karmaniverous/npm-package-template-ts/commit/daf699b641268d5f9c42618975be9a0c4afd8db3)
+- Switch to @vitest/eslint-plugin; use defineConfig [`10bb36c`](https://github.com/karmaniverous/npm-package-template-ts/commit/10bb36ce6fcf5165cbdbb35e45d39ed8c7faebd7)
+- template sync [`8d86cff`](https://github.com/karmaniverous/npm-package-template-ts/commit/8d86cffed2beb8bad3a1d5b2e2bbc65066c160e3)
+- Fix ESLint config: remove defineConfig, scope Vitest [`b6e0e20`](https://github.com/karmaniverous/npm-package-template-ts/commit/b6e0e206453944d2c84a2ce85be989cd2d868b67)
+- Fix PlantUML 404 with v20 includes; add diagrams alias [`a04b78f`](https://github.com/karmaniverous/npm-package-template-ts/commit/a04b78f1137b9b695ddda2c6c58fa5414bb48450)
+- Minimize aws.pu to only what hello-world needs [`17279ef`](https://github.com/karmaniverous/npm-package-template-ts/commit/17279ef8bffe1855fc791fb1ef54494d355e8400)
+- updated docs [`42e8baf`](https://github.com/karmaniverous/npm-package-template-ts/commit/42e8baf2d9abccfc770aa8ecab376ae92cf32943)
+- Fix ESLint types: use ESLint.Plugin; narrow unsafe assigns [`9ba22cc`](https://github.com/karmaniverous/npm-package-template-ts/commit/9ba22cc3a3fd86079b5ac06c9e7adc23b0758453)
+- regressed awslabs to v18 [`94437ec`](https://github.com/karmaniverous/npm-package-template-ts/commit/94437ec8de5b8d2e0a9d20c35dda543970c28271)
+- Use diagrams script and fix AWSCloudGroup fallback [`60d967f`](https://github.com/karmaniverous/npm-package-template-ts/commit/60d967ff05c14de5e938148c4625cf61376052b3)
+- Tidy ESLint config formatting; drop unused disables [`ec574f4`](https://github.com/karmaniverous/npm-package-template-ts/commit/ec574f4ccf5a9c280dff798b05fe789c2ef90658)
+- updated docs [`1c6f43c`](https://github.com/karmaniverous/npm-package-template-ts/commit/1c6f43c5a3a992ecac3e095dcb61c6fdb89b3832)
+- Tighten ESLint config types; fix import order [`2164cb5`](https://github.com/karmaniverous/npm-package-template-ts/commit/2164cb58a7298b2efef7ae4d366c0a0cd98fdca5)
+- Pin AWS Icons for PlantUML to v18.0 for compatibility [`76e54a2`](https://github.com/karmaniverous/npm-package-template-ts/commit/76e54a2c618246234c32fc444c7b3fbd7b0c23e2)
+- fix(eslint): ignore .stan dev build artifacts to stop lint errors [`dffecf4`](https://github.com/karmaniverous/npm-package-template-ts/commit/dffecf4bdb4c95041fd3a4ea8bd286f049e65e58)
+- lintfix [`c0fffa3`](https://github.com/karmaniverous/npm-package-template-ts/commit/c0fffa36725d047e5585a6b352845d02bb8b994d)
+- Fix vitest plugin typing; use Linter.Config [`8397a4f`](https://github.com/karmaniverous/npm-package-template-ts/commit/8397a4f0d05d6fe5f4fbbabe0475f9100c2c4372)
+- excluded docs from stan archive [`e744a75`](https://github.com/karmaniverous/npm-package-template-ts/commit/e744a755698704b5076547140e77b4558d118add)
+- added google drive sync [`533099d`](https://github.com/karmaniverous/npm-package-template-ts/commit/533099d0d9862d68c7737375fbf9eb65fb26ebe7)
+- updated stan [`dcdce68`](https://github.com/karmaniverous/npm-package-template-ts/commit/dcdce6880f76f250ccb445ec56fc0d0751ba8138)
+- Add link to TypeDoc in API documentation section [`92b46c3`](https://github.com/karmaniverous/npm-package-template-ts/commit/92b46c34e01177bf4062c458aba10df258c2b57b)
+- update readme [`bc8ce69`](https://github.com/karmaniverous/npm-package-template-ts/commit/bc8ce697c6108ccb991d6d51fced4d8c871a2fb1)
+- require consistent type imports [`f58e595`](https://github.com/karmaniverous/npm-package-template-ts/commit/f58e5956e96ba8dc8242c8c02bd67a9d765d554e)
 
 #### [v0.6.13](https://github.com/karmaniverous/npm-package-template-ts/compare/v0.6.12...v0.6.13)
 

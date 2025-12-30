@@ -1,13 +1,11 @@
 # Development Plan (stan.todo.md)
 
-When updated: 2025-09-21T18:20:00Z
+When updated: 2025-12-30T00:00:00Z
 
 ## Next up
-- Run `npm i`; verify no ESLint peer/override warnings. Run `npm run lint`
-  and expect 0 errors (ensures new Vitest plugin + typed TS/test blocks work).- Run `npm run lint:fix` to normalize CRLF line endings flagged by Prettier.
-- Re-run `npm run knip`; expect a clean report.
-- Sanity-check README links and commands (bin mapping, CLI paths, STAN notes).
-- Confirm IIFE behavior in a simple browser page if needed.
+- Re-run `npm run build`; expect Rollup to complete (no TS6053/outDir errors).
+- Re-run `npm run knip`; expect a clean report (cross-env should no longer be flagged).
+- Run the full STAN script set (or `npm run lint && npm run test && npm run typecheck`) to confirm everything is green.
 
 ## Completed (recent)
 
@@ -33,4 +31,4 @@ When updated: 2025-09-21T18:20:00Z
 - Pinned awslabs/aws-icons-for-plantuml to v18.0 in `diagrams/aws.pu`
   to match the Chocolatey PlantUML version and ensure reliable renders.
 - Ignored `.stan/**/*` in ESLint to avoid parserOptions.project errors on STAN
-  dev build artifacts.
+  dev build artifacts.- Fixed Rollup build + knip: configure @rollup/plugin-typescript for bundling (no outputToFilesystem; no incremental state) and make cross-env used via the build script; simplify STAN build script accordingly.

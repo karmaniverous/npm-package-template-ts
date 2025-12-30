@@ -18,11 +18,27 @@ import { packageName } from './src/util/packageName';
 
 const outputPath = `dist`;
 
+// Rollup writes bundle outputs; the TS plugin should only transpile.
+// - outputToFilesystem=false avoids outDir/dir validation errors for multi-output builds.
+// - incremental=false avoids TS build-info state referencing transient Rollup config artifacts.
+const typescript = typescriptPlugin({
+  tsconfig: './tsconfig.json',
+  outputToFilesystem: false,
+  tsconfigOverride: {
+    compilerOptions: {
+      noEmit: false,
+      declaration: false,
+      declarationMap: false,
+      incremental: false,
+    },
+  },
+});
+
 const commonPlugins = [
   commonjsPlugin(),
   jsonPlugin(),
   nodeResolve(),
-  typescriptPlugin(),
+  typescript,
 ];
 
 const commonAliases: Alias[] = [];
