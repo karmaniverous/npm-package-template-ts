@@ -24,14 +24,18 @@ const outputPath = `dist`;
 const typescript = typescriptPlugin({
   tsconfig: './tsconfig.json',
   outputToFilesystem: false,
-  tsconfigOverride: {
-    compilerOptions: {
-      noEmit: false,
-      declaration: false,
-      declarationMap: false,
-      incremental: false,
-    },
-  },
+  // Only compile bundled sources; prevents transient Rollup config artifacts
+  // (e.g. rollup.config-*.mjs) from being pulled into the TS program.
+  include: ['src/**/*.ts'],
+  exclude: ['**/*.test.ts', '**/*.test.tsx', '**/__tests__/**'],
+
+  // Override repo tsconfig settings for bundling.
+  noEmit: false,
+  declaration: false,
+  declarationMap: false,
+  incremental: false,
+  allowJs: false,
+  checkJs: false,
 });
 
 const commonPlugins = [
