@@ -1,12 +1,3 @@
 {
-  "version": "0.12.0",
-  "overlay": {
-    "enabled": false,
-    "activated": [],
-    "deactivated": [],
-    "effective": {},
-    "autosuspended": [],
-    "anchorsKept": {},
-    "overlapKept": {}
-  }
+  "version": "0.12.2"
 }

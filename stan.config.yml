@@ -3,6 +3,7 @@ stan-core:
   excludes:
     - docs
     - package-lock.json
+  includes: []
 stan-cli:
   cliDefaults:
     run:
