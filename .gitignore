@@ -5,6 +5,7 @@
 local/
 coverage/
 dist/
+docs/
 esm/
 node_modules/
 context/
