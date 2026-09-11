@@ -40,9 +40,15 @@ commit_parsers = [
     { message = "^feature", group = "<!-- 0 -->🚀 Features" },
     { message = "^bugfix", group = "<!-- 1 -->🐛 Bug Fixes" },
     { message = "^hotfix", group = "<!-- 2 -->🔥 Hotfixes" },
-    { message = "^docs", group = "<!-- 3 -->📚 Documentation" },
-    { message = "^chore", group = "<!-- 4 -->⚙️ Chores" },
-    { message = ".*", group = "<!-- 5 -->💼 Other" },
+    { message = "^refactor", group = "<!-- 3 -->🔨 Refactoring" },
+    { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
+    { message = "^docs", group = "<!-- 5 -->📚 Documentation" },
+    { message = "^test", group = "<!-- 6 -->🧪 Testing" },
+    { message = "^style", group = "<!-- 7 -->🎨 Styling" },
+    { message = "^ci", group = "<!-- 8 -->🔧 CI" },
+    { message = "^revert", group = "<!-- 9 -->◀️ Reverts" },
+    { message = "^chore", group = "<!-- 10 -->⚙️ Chores" },
+    { message = ".*", group = "<!-- 11 -->💼 Other" },
 ]
 filter_commits = false
 tag_pattern = "[0-9].*"
