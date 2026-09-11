@@ -35,18 +35,13 @@ split_commits = false
 commit_parsers = [
     { message = "^Merge pull request", skip = true },
     { message = "^Merge branch", skip = true },
-    { message = "^feat", group = "<!-- 0 -->🚀 Features" },
-    { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
-    { message = "^doc", group = "<!-- 3 -->📚 Documentation" },
-    { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
-    { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
-    { message = "^style", group = "<!-- 5 -->🎨 Styling" },
-    { message = "^test", group = "<!-- 6 -->🧪 Testing" },
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore\\(deps.*\\)", skip = true },
-    { message = "^chore|^ci", group = "<!-- 7 -->⚙️ Miscellaneous Tasks" },
-    { message = "^revert", group = "<!-- 9 -->◀️ Revert" },
-    { message = ".*", group = "<!-- 10 -->💼 Other" },
+    { message = "^feat", group = "<!-- 0 -->🚀 Features" },
+    { message = "^fix|^bugfix|^hotfix", group = "<!-- 1 -->🐛 Bug Fixes" },
+    { message = "^doc", group = "<!-- 2 -->📚 Documentation" },
+    { message = "^chore|^ci|^perf|^refactor|^style|^test|^revert", group = "<!-- 3 -->⚙️ Chores" },
+    { message = ".*", group = "<!-- 4 -->💼 Other" },
 ]
 filter_commits = false
 tag_pattern = "[0-9].*"
