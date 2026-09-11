@@ -1,0 +1,54 @@
+# git-cliff config for @karmaniverous/npm-package-template-ts
+# https://git-cliff.org/docs/configuration
+
+[changelog]
+header = """
+# Changelog
+
+All notable changes to this project will be documented in this file.\n
+"""
+body = """
+{% if version %}\
+    ## [{{ version }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+{% else %}\
+    ## [unreleased]
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for commit in commits %}
+        - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
+            {% if commit.breaking %}[**breaking**] {% endif %}\
+            {{ commit.message | upper_first }}\
+            {% if commit.remote.pr_number %} \
+                ([#{{ commit.remote.pr_number }}](https://github.com/karmaniverous/npm-package-template-ts/pull/{{ commit.remote.pr_number }}))\
+            {% endif %}\
+    {% endfor %}
+{% endfor %}
+"""
+trim = true
+render_always = true
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+split_commits = false
+commit_parsers = [
+    { message = "^Merge pull request", skip = true },
+    { message = "^Merge branch", skip = true },
+    { message = "^feat", group = "<!-- 0 -->🚀 Features" },
+    { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+    { message = "^doc", group = "<!-- 3 -->📚 Documentation" },
+    { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
+    { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
+    { message = "^style", group = "<!-- 5 -->🎨 Styling" },
+    { message = "^test", group = "<!-- 6 -->🧪 Testing" },
+    { message = "^chore\\(release\\)", skip = true },
+    { message = "^chore\\(deps.*\\)", skip = true },
+    { message = "^chore|^ci", group = "<!-- 7 -->⚙️ Miscellaneous Tasks" },
+    { message = "^revert", group = "<!-- 9 -->◀️ Revert" },
+    { message = ".*", group = "<!-- 10 -->💼 Other" },
+]
+filter_commits = false
+tag_pattern = "[0-9].*"
+sort_commits = "oldest"
+topo_order_commits = true

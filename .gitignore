@@ -10,11 +10,3 @@ esm/
 node_modules/
 context/
 
-# STAN
-.stan/output/
-.stan/diff/
-.stan/dist/
-.stan/patch/
-.stan/system/facet.state.json
-.stan/system/.docs.meta.json
-.stan/imports/
