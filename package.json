@@ -112,7 +112,7 @@
     "url": "git+https://github.com/karmaniverous/npm-package-template-ts.git"
   },
   "scripts": {
-    "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin \"typescript={incremental:false,outputToFilesystem:false}\"",
     "changelog": "git-cliff -o CHANGELOG.md",
     "diagrams": "cd diagrams/src && plantuml -tpng -o ../out -r .",
     "docs": "typedoc",

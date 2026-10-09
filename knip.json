@@ -1,6 +1,9 @@
 {
   "entry": ["src/**/index.ts"],
   "ignoreBinaries": ["plantuml"],
+  "ignoreUnresolved": [
+    "typescript={incremental:false,outputToFilesystem:false}"
+  ],
   "project": ["*/**", "!docs/**"],
   "rules": {
     "exports": "off",
