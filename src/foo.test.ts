@@ -1,13 +1,23 @@
-import { expect, suite, test } from 'vitest';
+import { afterEach, expect, suite, test, vi } from 'vitest';
 
 import { foo } from './';
 
 suite('foo', () => {
-  test('should allow expression assertions', () => {
-    expect(true).toBe(true);
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
-  test('should prefix bar', () => {
-    expect(foo('bar')).toBe('foo bar');
+  test.each([
+    ['bar', 'foo bar'],
+    [undefined, 'foo nothing'],
+  ])('foos %s', (target, expected) => {
+    const debug = vi
+      .spyOn(console, 'debug')
+      .mockImplementation(() => undefined);
+
+    expect(foo(target)).toBe(expected);
+    expect(debug).toHaveBeenCalledExactlyOnceWith(
+      `fooing '${target ?? 'nothing'}'!`,
+    );
   });
 });

@@ -20,7 +20,7 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "js/ts.preferences.importModuleSpecifierEnding": "minimal",
-  "js/ts.tsdk.path": "node_modules\\typescript\\lib",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "plantuml.diagramsRoot": "diagrams/src",
   "plantuml.exportFormat": "",

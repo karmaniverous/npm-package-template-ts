@@ -32,23 +32,35 @@ render_always = true
 conventional_commits = true
 filter_unconventional = false
 split_commits = false
+# Commit parsers are deliberately PERMISSIVE and are NOT coupled to the
+# Lefthook branch-naming policy (.lefthook/pre-commit/branch-naming-policy).
+# Their only job is to sort commits into changelog groups. They accept the
+# common type words (Conventional Commit types, Git Flow branch prefixes &
+# their usual variants), case-insensitively, with or without a scope, a `!`
+# or the `[ISSUE-123]` prefix that the Lefthook add-issue hook prepends.
+# Anything unrecognised lands in Other. Change branch policy in ONE place:
+# the Lefthook script. See README § Changelog.
+#
+# Group names carry a zero-padded sort key so groups render in this order.
 commit_parsers = [
-    { message = "^Merge pull request", skip = true },
-    { message = "^Merge branch", skip = true },
-    { message = "^chore: release", skip = true },
-    { message = "^chore\\(deps.*\\)", skip = true },
-    { message = "^feature", group = "<!-- 0 -->🚀 Features" },
-    { message = "^bugfix", group = "<!-- 1 -->🐛 Bug Fixes" },
-    { message = "^hotfix", group = "<!-- 2 -->🔥 Hotfixes" },
-    { message = "^refactor", group = "<!-- 3 -->🔨 Refactoring" },
-    { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
-    { message = "^docs", group = "<!-- 5 -->📚 Documentation" },
-    { message = "^test", group = "<!-- 6 -->🧪 Testing" },
-    { message = "^style", group = "<!-- 7 -->🎨 Styling" },
-    { message = "^ci", group = "<!-- 8 -->🔧 CI" },
-    { message = "^revert", group = "<!-- 9 -->◀️ Reverts" },
-    { message = "^chore", group = "<!-- 10 -->⚙️ Chores" },
-    { message = ".*", group = "<!-- 11 -->💼 Other" },
+    { message = '(?i)^Merge (pull request|branch|remote-tracking branch)\b', skip = true },
+    { message = '(?i)^(\[[^\]]*\]\s*)?chore(\(release\))?!?:\s*release\b', skip = true },
+    # Dependency bumps: any type scoped (dep)/(deps)/(deps-dev), as Dependabot
+    # & Renovate write them, or a bare dep:/deps: type.
+    { message = '(?i)^(\[[^\]]*\]\s*)?([a-z]+\(deps?(-dev)?\)|deps?(\([^)]*\))?)!?:', skip = true },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(feat|feats|feature|features)\b', group = "<!-- 00 -->🚀 Features" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(fix|fixes|fixed|bug|bugs|bugfix|bugfixes)\b', group = "<!-- 01 -->🐛 Bug Fixes" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(hotfix|hotfixes)\b', group = "<!-- 02 -->🔥 Hotfixes" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(sec|security)\b', group = "<!-- 03 -->🔒 Security" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(refactor|refactors|refactoring)\b', group = "<!-- 04 -->🔨 Refactoring" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(perf|performance)\b', group = "<!-- 05 -->⚡ Performance" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(doc|docs|documentation)\b', group = "<!-- 06 -->📚 Documentation" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(test|tests|testing)\b', group = "<!-- 07 -->🧪 Testing" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(style|styles|styling|format|formatting|lint)\b', group = "<!-- 08 -->🎨 Styling" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(ci|cd|build|builds)\b', group = "<!-- 09 -->🔧 Build & CI" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(revert|reverts|reverted)\b', group = "<!-- 10 -->◀️ Reverts" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(chore|chores|maint|maintenance|release)\b', group = "<!-- 11 -->⚙️ Chores" },
+    { message = '.*', group = "<!-- 12 -->💼 Other" },
 ]
 filter_commits = false
 tag_pattern = "[0-9].*"
