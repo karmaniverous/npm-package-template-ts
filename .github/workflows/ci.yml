@@ -1,0 +1,70 @@
+name: CI
+
+# Runs every quality gate on each PR & push to main, on each supported Node
+# major. Keep the steps in sync with the release-it `after:init` hooks in
+# package.json, and the Node versions in sync with `engines.node`.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: quality (node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['22', '24']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Knip
+        run: npm run knip
+
+      - name: Build
+        run: npm run build
+
+      # Run every built CLI, so a bundle that won't even start (e.g. a
+      # duplicated shebang) fails CI instead of shipping.
+      - name: Smoke-test CLIs
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          for cli in dist/cli/*/index.js; do
+            echo "::group::$cli --help"
+            node "$cli" --help
+            echo '::endgroup::'
+          done
+
+      - name: Docs
+        run: npm run docs -- --emit none
