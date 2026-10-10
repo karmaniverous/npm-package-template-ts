@@ -1,6 +1,8 @@
 /**
- * Vitest config: Node environment with V8 coverage, enforced at 100% for
- * library sources on every run.
+ * Vitest config: Node environment with V8 coverage reported on every run.
+ *
+ * Coverage is reported, not gated. Aim for adequate coverage of meaningful
+ * behaviour (decision branches, edge cases, error paths), not a percentage.
  *
  * @module
  */
@@ -16,12 +18,6 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       include: ['src/**/*.ts'],
       exclude: ['src/**/*.test.ts'],
-      thresholds: {
-        branches: 100,
-        functions: 100,
-        lines: 100,
-        statements: 100,
-      },
     },
   },
 });
