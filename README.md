@@ -195,7 +195,7 @@ See the `release-it` section in [`package.json`](https://github.com/karmaniverou
 
 [git-cliff](https://git-cliff.org/) generates `CHANGELOG.md` and your GitHub release notes from your commit history. You never edit the changelog by hand. Run `npm run changelog` to regenerate it on demand; `npm run release` does it for you.
 
-Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
+Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
 ### Why the parsers are permissive
 

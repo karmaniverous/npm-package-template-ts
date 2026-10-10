@@ -45,7 +45,9 @@ split_commits = false
 commit_parsers = [
     { message = '(?i)^Merge (pull request|branch|remote-tracking branch)\b', skip = true },
     { message = '(?i)^(\[[^\]]*\]\s*)?chore(\(release\))?!?:\s*release\b', skip = true },
-    { message = '(?i)^(\[[^\]]*\]\s*)?(chore|build|deps?)\(deps?(-dev)?\)', skip = true },
+    # Dependency bumps: any type scoped (dep)/(deps)/(deps-dev), as Dependabot
+    # & Renovate write them, or a bare dep:/deps: type.
+    { message = '(?i)^(\[[^\]]*\]\s*)?([a-z]+\(deps?(-dev)?\)|deps?(\([^)]*\))?)!?:', skip = true },
     { message = '(?i)^(\[[^\]]*\]\s*)?(feat|feats|feature|features)\b', group = "<!-- 00 -->🚀 Features" },
     { message = '(?i)^(\[[^\]]*\]\s*)?(fix|fixes|fixed|bug|bugs|bugfix|bugfixes)\b', group = "<!-- 01 -->🐛 Bug Fixes" },
     { message = '(?i)^(\[[^\]]*\]\s*)?(hotfix|hotfixes)\b', group = "<!-- 02 -->🔥 Hotfixes" },
@@ -57,7 +59,7 @@ commit_parsers = [
     { message = '(?i)^(\[[^\]]*\]\s*)?(style|styles|styling|format|formatting|lint)\b', group = "<!-- 08 -->🎨 Styling" },
     { message = '(?i)^(\[[^\]]*\]\s*)?(ci|cd|build|builds)\b', group = "<!-- 09 -->🔧 Build & CI" },
     { message = '(?i)^(\[[^\]]*\]\s*)?(revert|reverts|reverted)\b', group = "<!-- 10 -->◀️ Reverts" },
-    { message = '(?i)^(\[[^\]]*\]\s*)?(chore|chores|maint|maintenance|deps|dep|release)\b', group = "<!-- 11 -->⚙️ Chores" },
+    { message = '(?i)^(\[[^\]]*\]\s*)?(chore|chores|maint|maintenance|release)\b', group = "<!-- 11 -->⚙️ Chores" },
     { message = '.*', group = "<!-- 12 -->💼 Other" },
 ]
 filter_commits = false
