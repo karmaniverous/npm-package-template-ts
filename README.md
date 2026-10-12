@@ -195,6 +195,8 @@ See the `release-it` section in [`package.json`](https://github.com/karmaniverou
 
 [git-cliff](https://git-cliff.org/) generates `CHANGELOG.md` and your GitHub release notes from your commit history. You never edit the changelog by hand. Run `npm run changelog` to regenerate it on demand; `npm run release` does it for you.
 
+During a release, git-cliff runs before the release tag exists. That's why the release config passes `--tag ${version}` both when it writes `CHANGELOG.md` and when it builds the GitHub release notes: without it, git-cliff files the release's own commits under `[unreleased]`. If you change `git.tagName` (e.g. to `v${version}`), change the `--tag` value to match, and keep it matching `tag_pattern` in `cliff.toml`.
+
 Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
 ### Why the parsers are permissive
