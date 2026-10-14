@@ -185,7 +185,7 @@ Just run `npm run release` and the following will happen:
 - Rollup will bundle your code.
 - ReleaseIt will bump your version, and [git-cliff](#changelog) will regenerate & commit `CHANGELOG.md`.
 - TypeDoc will build your API documentation as a check. (The [docs workflow](#api-documentation) deploys it.)
-- ReleaseIt will create a release on GitHub (with git-cliff release notes), publish your package to NPM, and cut a `release/x.y.z` branch.
+- ReleaseIt will create a GitHub release titled `<package>@x.y.z` (with git-cliff release notes covering the commits since the previous release), publish your package to NPM, and cut a `release/x.y.z` branch.
 
 To preserve Git Flow integrity, `npm run release` will only run on the `main` branch. It is often useful, though, to create a pre-release version from a feature branch. To do this, run `npm run release:pre` on any branch.
 
@@ -194,6 +194,10 @@ See the `release-it` section in [`package.json`](https://github.com/karmaniverou
 ## Changelog
 
 [git-cliff](https://git-cliff.org/) generates `CHANGELOG.md` and your GitHub release notes from your commit history. You never edit the changelog by hand. Run `npm run changelog` to regenerate it on demand; `npm run release` does it for you.
+
+During a release, git-cliff runs **before** the release tag exists: `CHANGELOG.md` is written in the `after:bump` hook, and ReleaseIt renders `github.releaseNotes` before its git step creates the tag. So the release config passes `--tag ${version}` to both commands, which names the not-yet-tagged commits after the new version instead of `[unreleased]`. The release notes use `--unreleased` (the commits since the last existing tag), not `--latest`: before the tag exists, `--latest` returns the _previous_ release. If you change `git.tagName` (e.g. to `v${version}`), change both `--tag` values to match, and keep them matching `tag_pattern` in `cliff.toml`.
+
+To correct the notes of your most recent release after it's published (its tag must exist), run: `gh release edit <tag> --notes "$(npx git-cliff --latest --strip header)"`.
 
 Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
