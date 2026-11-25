@@ -185,7 +185,7 @@ Just run `npm run release` and the following will happen:
 - Rollup will bundle your code.
 - ReleaseIt will bump your version, and [git-cliff](#changelog) will regenerate & commit `CHANGELOG.md`.
 - TypeDoc will build your API documentation as a check. (The [docs workflow](#api-documentation) deploys it.)
-- ReleaseIt will create a GitHub release titled `<package>@x.y.z` (with git-cliff release notes covering the commits since the previous full release), publish your package to NPM, and cut a `release/x.y.z` branch.
+- ReleaseIt will create a GitHub release titled `<package>@x.y.z` (with git-cliff release notes covering the commits since the previous release), publish your package to NPM, and cut a `release/x.y.z` branch.
 
 To preserve Git Flow integrity, `npm run release` will only run on the `main` branch. It is often useful, though, to create a pre-release version from a feature branch. To do this, run `npm run release:pre` on any branch.
 
@@ -195,19 +195,9 @@ See the `release-it` section in [`package.json`](https://github.com/karmaniverou
 
 [git-cliff](https://git-cliff.org/) generates `CHANGELOG.md` and your GitHub release notes from your commit history. You never edit the changelog by hand. Run `npm run changelog` to regenerate it on demand; `npm run release` does it for you.
 
-During a release, git-cliff runs **before** the release tag exists: `CHANGELOG.md` is written in the `after:bump` hook, and ReleaseIt renders `github.releaseNotes` before its git step creates the tag. So the release config passes `--tag ${version}` to both commands, which names the not-yet-tagged commits after the new version instead of `[unreleased]`. The release notes use `--unreleased` (the commits since the last tag matching `tag_pattern`, i.e. the last full release), not `--latest`: before the tag exists, `--latest` returns the _previous_ full release. If you change `git.tagName` (e.g. to `v${version}`), change both `--tag` values to match, and change `tag_pattern` in `cliff.toml` to match (e.g. `'^v[0-9]+\.[0-9]+\.[0-9]+$'`, or `'^my-pkg@[0-9]+\.[0-9]+\.[0-9]+$'` for prefixed tags). git-cliff does not warn when they don't match; it just treats your whole history as one release.
+During a release, git-cliff runs **before** the release tag exists: `CHANGELOG.md` is written in the `after:bump` hook, and ReleaseIt renders `github.releaseNotes` before its git step creates the tag. So the release config passes `--tag ${version}` to both commands, which names the not-yet-tagged commits after the new version instead of `[unreleased]`. The release notes use `--unreleased` (the commits since the last existing tag), not `--latest`: before the tag exists, `--latest` returns the _previous_ release. If you change `git.tagName` (e.g. to `v${version}`), change both `--tag` values to match, and keep them matching `tag_pattern` in `cliff.toml`.
 
-Only full releases count as release boundaries: `tag_pattern` matches `x.y.z` and deliberately not pre-release tags like `x.y.z-0` (from `npm run release:pre`). So the notes and changelog section of a full release cover every change since the previous _full_ release, not just since the last preview, and a preview's own notes cover every change since the last full release. `CHANGELOG.md` holds at most one pre-release section, covering everything since the last full release; each later preview or full release replaces it.
-
-To correct the notes of a release after it's published (its tag must exist), give git-cliff the range from the previous full release, write the notes to a file and upload it:
-
-```bash
-npx git-cliff <previous-full-tag>..<tag> --tag <tag> --strip header -o notes.md
-gh release edit <tag> --notes-file notes.md
-rm notes.md
-```
-
-`<previous-full-tag>` is the last full release (`x.y.z`) _before_ `<tag>`: for `1.1.0-1` or `1.1.0` that's e.g. `1.0.0`, if that's the last full release before `1.1.0`; never a preview and never `<tag>` itself (that gives empty notes). This works for previews too, where `--latest` would return the last full release instead. If `<tag>` is your first full release, or a preview before any full release, there is no `<previous-full-tag>`: replace the range with the tag's commit, `$(git rev-list -n 1 <tag>)`. Writing to a file keeps the notes intact in any shell; PowerShell would flatten `--notes "$(...)"` onto one line.
+To correct the notes of your most recent release after it's published (its tag must exist), run: `gh release edit <tag> --notes "$(npx git-cliff --latest --strip header)"`.
 
 Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
