@@ -199,7 +199,7 @@ During a release, git-cliff runs **before** the release tag exists: `CHANGELOG.m
 
 To correct the notes of your most recent release after it's published (its tag must exist), run: `gh release edit <tag> --notes "$(npx git-cliff --latest --strip header)"`.
 
-Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
+Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. Before sorting, git-cliff strips the `[GH-123]` prefix the [`add-issue`](#git-hooks) hook prepends, so `[19] feat(api)!: …` still reads as a conventional commit: it keeps its scope and **breaking** marker, and the prefix stays out of the changelog. See the `commit_preprocessors` and `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
 ### Why the parsers are permissive
 

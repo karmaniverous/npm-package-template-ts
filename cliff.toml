@@ -30,6 +30,12 @@ render_always = true
 
 [git]
 conventional_commits = true
+# Strip the issue prefix the Lefthook add-issue hook prepends (e.g. `[19] `,
+# `[GH-123] `) so the commit still parses as conventional: it keeps its
+# scope and breaking-change marker, and the prefix stays out of the text.
+commit_preprocessors = [
+  { pattern = '^\[[^\]]+\]\s+', replace = "" },
+]
 filter_unconventional = false
 split_commits = false
 # Commit parsers are deliberately PERMISSIVE and are NOT coupled to the
