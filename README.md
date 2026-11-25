@@ -204,9 +204,10 @@ To correct the notes of a release after it's published (its tag must exist), giv
 ```bash
 npx git-cliff <previous-full-tag>..<tag> --tag <tag> --strip header -o notes.md
 gh release edit <tag> --notes-file notes.md
+rm notes.md
 ```
 
-`<previous-full-tag>` is the last full release (`x.y.z`) _before_ `<tag>`: for `1.1.0-1` or `1.1.0` that's `1.0.0`, never a preview and never `<tag>` itself (that gives empty notes). This works for previews too, where `--latest` would return the last full release instead. If `<tag>` is your first full release, or a preview before any full release, there is no `<previous-full-tag>`: replace the range with the tag's commit, `$(git rev-list -n 1 <tag>)`. Writing to a file keeps the notes intact in any shell; PowerShell would flatten `--notes "$(...)"` onto one line.
+`<previous-full-tag>` is the last full release (`x.y.z`) _before_ `<tag>`: for `1.1.0-1` or `1.1.0` that's e.g. `1.0.0`, if that's the last full release before `1.1.0`; never a preview and never `<tag>` itself (that gives empty notes). This works for previews too, where `--latest` would return the last full release instead. If `<tag>` is your first full release, or a preview before any full release, there is no `<previous-full-tag>`: replace the range with the tag's commit, `$(git rev-list -n 1 <tag>)`. Writing to a file keeps the notes intact in any shell; PowerShell would flatten `--notes "$(...)"` onto one line.
 
 Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
