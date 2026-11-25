@@ -199,7 +199,7 @@ During a release, git-cliff runs **before** the release tag exists: `CHANGELOG.m
 
 To correct the notes of your most recent release after it's published (its tag must exist), run: `gh release edit <tag> --notes "$(npx git-cliff --latest --strip header)"`.
 
-Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. See the `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
+Commits are sorted into groups (Features, Bug Fixes, Hotfixes, Security, Refactoring, Performance, Documentation, Testing, Styling, Build & CI, Reverts, Chores) by the first word of the commit message. Merge commits, release commits & dependency bumps are left out. A dependency bump is any commit scoped `(deps)` or `(deps-dev)` (e.g. Dependabot's `chore(deps): bump foo`), or typed `dep:`/`deps:`. Anything unrecognized lands in **Other**. Before sorting, git-cliff strips the issue prefix the [`add-issue`](#git-hooks) hook prepends (e.g. `[19] `), so `[19] feat(api)!: …` still reads as a conventional commit: it keeps its scope and **breaking** marker, and the prefix stays out of the changelog. See the `commit_preprocessors` and `commit_parsers` in [`cliff.toml`](https://github.com/karmaniverous/npm-package-template-ts/tree/main/cliff.toml).
 
 ### Why the parsers are permissive
 
@@ -207,7 +207,7 @@ The parsers deliberately accept a broad range of common type words, whatever con
 
 - Conventional Commit types (`feat:`, `fix(api)!:`, `docs:`) and Git Flow branch words (`feature:`, `bugfix:`, `hotfix:`).
 - Common variants (`features`, `fixed`, `doc`, `refactoring`, `build`), in any letter case.
-- The `[GH-123]` issue prefix that the [`add-issue`](#git-hooks) hook prepends.
+- A leftover `[19]` issue prefix that `commit_preprocessors` didn't strip (e.g. `[19]feat:` with no space), as a fallback.
 
 **This is a design decision, not an oversight.** The changelog's only job is to _classify_ commits. Deciding which branch types are _allowed_ is the job of the Lefthook [`branch-naming-policy`](#git-hooks) script, and nothing else. Keeping the two decoupled means you change your branch policy in exactly one place, and the changelog keeps working. Don't narrow the parsers to mirror the branch policy.
 

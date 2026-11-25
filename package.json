@@ -122,7 +122,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "release": "dotenvx run -f .env.local -- release-it",
-    "release:pre": "dotenvx run -f .env.local -- release-it --no-git.requireBranch --github.prerelease --preRelease",
+    "release:pre": "dotenvx run -f .env.local -- release-it --no-git.requireBranch --github.preRelease --preRelease",
     "test": "vitest run",
     "typecheck": "tsc"
   },
