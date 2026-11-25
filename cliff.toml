@@ -30,8 +30,8 @@ render_always = true
 
 [git]
 conventional_commits = true
-# Strip the issue prefix the Lefthook add-issue hook prepends (e.g. `[19] `,
-# `[GH-123] `) so the commit still parses as conventional: it keeps its
+# Strip the issue prefix the Lefthook add-issue hook prepends (e.g. `[19] `)
+# so the commit still parses as conventional: it keeps its
 # scope and breaking-change marker, and the prefix stays out of the text.
 commit_preprocessors = [
   { pattern = '^\[[^\]]+\]\s+', replace = "" },
@@ -43,7 +43,7 @@ split_commits = false
 # Their only job is to sort commits into changelog groups. They accept the
 # common type words (Conventional Commit types, Git Flow branch prefixes &
 # their usual variants), case-insensitively, with or without a scope, a `!`
-# or the `[ISSUE-123]` prefix that the Lefthook add-issue hook prepends.
+# or a leftover `[19]` prefix the preprocessor above didn't strip.
 # Anything unrecognised lands in Other. Change branch policy in ONE place:
 # the Lefthook script. See README § Changelog.
 #
